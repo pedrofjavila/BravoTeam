@@ -15,8 +15,9 @@ import org.academiadecodigo.apiores.bravoteam.Intro.Intro;
 public class B2B extends Game {
 
 	private SpriteBatch batch;
-
+	private mainMenu menu;
 	private OrthographicCamera camera;
+	private Boolean start = false;
 
 	// Texture /
 	private Texture background;
@@ -49,6 +50,7 @@ public class B2B extends Game {
 		player.width = 64;
 		player.height = 64;
 		screen = new Intro(getCamera(),getBatch());
+		menu = new mainMenu(getBatch(),getCamera());
 		touchPos = new Vector3();
 
 		coughing = Gdx.audio.newSound(Gdx.files.internal("503749__strangelandspod__sick-man-coughing-in-mall-food-court.mp3"));
@@ -66,7 +68,10 @@ public class B2B extends Game {
 	public void render() {
 
 		camera.update();
-		createImages();
+		menu.show();
+		if(start){
+			createImages();
+		}
 		userInputs();
 	}
 
@@ -94,15 +99,21 @@ public class B2B extends Game {
 	private void userInputs() {
 
 		if (Gdx.input.isTouched()) {
-			//touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-			//camera.unproject(touchPos);
-			//player.x = touchPos.x - 25;
+			touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+			camera.unproject(touchPos);
+			player.x = touchPos.x - 25;
 
 		}
-		if(Gdx.input.isTouched()){
+		if(Gdx.input.isKeyPressed(Input.Keys.TAB)){
 				setScreen(screen);
 				screen.show();
 				screen.render(1);
+		}
+		if(Gdx.input.isKeyPressed(Input.Keys.Y)){
+			start = true;
+		}
+		if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
+			System.exit(1);
 		}
 
 
