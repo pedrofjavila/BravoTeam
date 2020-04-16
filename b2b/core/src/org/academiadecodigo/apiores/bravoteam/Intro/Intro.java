@@ -18,7 +18,7 @@ public class Intro implements Screen {
     BitmapFont font = new BitmapFont();
     private Player player = new Player();
     private SpriteBatch batch;
-    private Texture test = new Texture("badlogic.jpg ");
+    private Texture test = new Texture("Images/badlogic.jpg ");
     private OrthographicCamera camera;
     public Intro (OrthographicCamera camera, SpriteBatch batch){
         this.camera = camera;
@@ -35,10 +35,12 @@ public class Intro implements Screen {
     public void render(float delta) {
         batch.begin();
         font.getData().setScale(2.5f,2.5f);
+        font.draw(batch,"Days: "+ player.getDaysCounter(),10,250);
         font.draw(batch,"Health: " + player.getHealth(),10,200);
         font.draw(batch,"Hunger: "+ player.getHunger(),10,150);
         font.draw(batch,"Thirst: "+ player.getThirst(),10,100);
         font.draw(batch,"Sanity: "+ player.getSanity(),10,50);
+
         batch.end();
     }
 

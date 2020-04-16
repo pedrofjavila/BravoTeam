@@ -43,8 +43,8 @@ public class B2B extends Game {
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 800, 480);
 
-		background = new Texture("backgrd.jpg");
-		playerImage = new Texture("clipart-3-15-16-44-47.png");
+		background = new Texture("Images/background.jpg");
+		playerImage = new Texture("Images/clipart-3-15-16-44-47.png");
 
 		player = new Rectangle();
 		player.x = 0;
@@ -55,11 +55,14 @@ public class B2B extends Game {
 		menu = new mainMenu(getBatch(),getCamera());
 		opMenu = new optionsMenu(getBatch());
 		touchPos = new Vector3();
-		coughing = Gdx.audio.newSound(Gdx.files.internal("503749__strangelandspod__sick-man-coughing-in-mall-food-court.mp3"));
-		bg_music = Gdx.audio.newMusic(Gdx.files.internal("512196__legend1060__an-epicenter-and-a-pandemic.mp3"));
+		coughing = Gdx.audio.newSound(Gdx.files.internal("Sounds/503749__strangelandspod__sick-man-coughing-in-mall-food-court.mp3"));
+		bg_music = Gdx.audio.newMusic(Gdx.files.internal("Music/background_music.mp3"));
 		bg_music.setLooping(true);
 		bg_music.setVolume(0.50f);
-		//bg_music.play();
+		intro_music = Gdx.audio.newMusic(Gdx.files.internal("Music/I Will Survive_intro.mp3"));
+		intro_music.setLooping(true);
+		intro_music.setVolume(0.50f);
+
 
 	}
 
@@ -68,12 +71,15 @@ public class B2B extends Game {
 		camera.update();
 		System.gc();
 		if(!start){
-
+			intro_music.play();
 			menu.render();
+
 		}
 		if(start){
+			intro_music.pause();
 			createImages();
 			userinputBlocked();
+			bg_music.play();
 		}
 		userInputs();
 	}
@@ -87,6 +93,7 @@ public class B2B extends Game {
 		screen.dispose();
 		coughing.dispose();
 		bg_music.dispose();
+		intro_music.dispose();
 
 	}
 
@@ -108,10 +115,11 @@ public class B2B extends Game {
 
 		}
 		if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
+
 			System.exit(1);
 		}
 		if(Gdx.input.isKeyPressed(Input.Keys.M)){
-			setScreen(opMenu);
+
 			opMenu.show();
 			opMenu.render(1);
 		}
@@ -119,7 +127,7 @@ public class B2B extends Game {
 		}
 		public void userinputBlocked(){
 			if(Gdx.input.isKeyPressed(Input.Keys.TAB)){
-				setScreen(screen);
+
 				screen.show();
 				screen.render(1);
 			}

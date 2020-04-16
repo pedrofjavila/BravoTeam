@@ -7,6 +7,10 @@ public class Player {
     private int thirst = 100;
     private int sanity = 100;
 
+
+
+    private int daysCounter = 0;
+
     public void setHealth(int health) {
         this.health = health;
     }
@@ -23,6 +27,9 @@ public class Player {
         this.sanity = sanity;
     }
 
+    public void setDaysCounter(int daysCounter) {
+        this.daysCounter = daysCounter;
+}
     public int getHealth() {
         return health;
     }
@@ -38,4 +45,8 @@ public class Player {
     public int getSanity() {
         return sanity;
     }
+    public int getDaysCounter() {
+        return daysCounter;
+    }
+
 }
