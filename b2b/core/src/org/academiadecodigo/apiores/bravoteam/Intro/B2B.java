@@ -115,6 +115,7 @@ public class B2B extends Game {
 		intro_music.setVolume(0.50f);
 		diary.setPlayer(player);
 
+
 	}
 
 	@Override

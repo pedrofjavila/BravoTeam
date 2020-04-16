@@ -76,11 +76,11 @@ public class Messages {
 
 public static final String EVENT_DAYS_LOST = "Everyday is the same...\n"+
         "I lost The notion of time inside these 4 walls.\n"+
-        "The Confining is killing me";
+        "The Confining is killing me...";
 
 
  // RANDOM EVENTS
- public static final String RANDOM_GOT_MUGGED = "I got mugged by marginals";
+ public static final String RANDOM_GOT_MUGGED = "I got mugged by marginals, I need to rest...";
 
  public static final String PLAYERSTATS = "Health  :  \n" + "Hunger  :  \n" + "Thirst  :  \n" + "Sanity  :  \n" ;
 }
