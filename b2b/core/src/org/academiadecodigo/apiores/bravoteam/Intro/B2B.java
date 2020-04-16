@@ -2,30 +2,42 @@ package org.academiadecodigo.apiores.bravoteam.Intro;
 
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.FileHandleResolver;
+import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
+import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
+import org.academiadecodigo.apiores.bravoteam.Diary.DiaryText;
+import org.academiadecodigo.apiores.bravoteam.Intro.Menus.Player;
 import org.academiadecodigo.apiores.bravoteam.Intro.Menus.mainMenu;
 import org.academiadecodigo.apiores.bravoteam.Intro.Menus.optionsMenu;
+import org.academiadecodigo.apiores.bravoteam.Util.Messages;
 
 public class B2B extends Game {
 
 	private SpriteBatch batch;
-	private mainMenu menu;
-	private optionsMenu opMenu;
 	private OrthographicCamera camera;
 	private Boolean start = false;
 
+	// Screens
+	private mainMenu menu;
+	private optionsMenu opMenu;
+	private DiaryText diary;
 	// Texture /
 	private Texture background;
 	private Texture playerImage;
 	private Texture drop;
 
-	private Rectangle player;
+	private Rectangle playerHitbox;
 
 	private Vector3 touchPos;
 
@@ -35,25 +47,55 @@ public class B2B extends Game {
 	private Sound coughing;
 	private Intro intro;
 	private AssetManager assetManager;
+	private Player player;
 
 
 	@Override
 	public void create() {
+		assetManager = new AssetManager();
+
+		// set the loaders for the generator and the fonts themselves
+		FileHandleResolver resolver = new InternalFileHandleResolver();
+		assetManager.setLoader(FreeTypeFontGenerator.class, new FreeTypeFontGeneratorLoader(resolver));
+		assetManager.setLoader(BitmapFont.class, ".ttf", new FreetypeFontLoader(resolver));
+
+
+
+		// load to fonts via the generator (implicitely done by the FreetypeFontLoader).
+		// Note: you MUST specify a FreetypeFontGenerator defining the ttf font file name and the size
+		// of the font to be generated. The names of the fonts are arbitrary and are not pointing
+		// to a file on disk (but must end with the font's file format '.ttf')!
+		FreetypeFontLoader.FreeTypeFontLoaderParameter handFont = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
+
+		handFont.fontFileName = "Font/IndieFlower-Regular.ttf";
+		handFont.fontParameters.size = 30;
+		handFont.fontParameters.color = Color.BLACK;
+		assetManager.load("hwsize20.ttf", BitmapFont.class, handFont);
+		FreetypeFontLoader.FreeTypeFontLoaderParameter handFont2 = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
+
+		handFont2.fontFileName = "Font/IndieFlower-Regular.ttf";
+		handFont2.fontParameters.size = 30;
+		handFont2.fontParameters.color = Color.BLACK;
+		handFont2.fontParameters.color = Color.BLUE;
+		assetManager.load("hwsize20.ttf", BitmapFont.class, handFont);
+
 		batch = new SpriteBatch();
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 800, 480);
 
 		background = new Texture("Images/background.jpg");
+		player = new Player();
 		playerImage = new Texture("Images/clipart-3-15-16-44-47.png");
 
-		player = new Rectangle();
-		player.x = 0;
-		player.y = 0;
-		player.width = 64;
-		player.height = 64;
+		playerHitbox = new Rectangle();
+		playerHitbox.x = 0;
+		playerHitbox.y = 0;
+		playerHitbox.width = 64;
+		playerHitbox.height = 64;
 		screen = new Intro(getCamera(),getBatch());
 		menu = new mainMenu(getBatch(),getCamera());
 		opMenu = new optionsMenu(getBatch());
+		diary = new DiaryText(getBatch(), getCamera(), getAssetManager());
 		touchPos = new Vector3();
 		coughing = Gdx.audio.newSound(Gdx.files.internal("Sounds/503749__strangelandspod__sick-man-coughing-in-mall-food-court.mp3"));
 		bg_music = Gdx.audio.newMusic(Gdx.files.internal("Music/background_music.mp3"));
@@ -69,6 +111,7 @@ public class B2B extends Game {
 	@Override
 	public void render() {
 		camera.update();
+		assetManager.update();
 		System.gc();
 		if(!start){
 			intro_music.play();
@@ -80,6 +123,8 @@ public class B2B extends Game {
 			createImages();
 			userinputBlocked();
 			bg_music.play();
+			diary.render();
+			setDiaryMessage(this.player);
 		}
 		userInputs();
 	}
@@ -144,6 +189,16 @@ public class B2B extends Game {
 	@Override
 	public void setScreen(Screen screen) {
 		this.screen = screen;
+	}
+
+	public AssetManager getAssetManager() {
+		return assetManager;
+	}
+
+
+	public void setDiaryMessage( Player  player){
+		diary.setDaycounter(player.getDaysCounter());
+		diary.setEvent(Messages.EVENT_DAY_ZERO);
 	}
 }
 
