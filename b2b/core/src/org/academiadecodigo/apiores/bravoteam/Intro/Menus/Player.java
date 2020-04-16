@@ -6,10 +6,9 @@ public class Player {
     private int hunger = 100;
     private int thirst = 100;
     private int sanity = 100;
-
-
-
     private int daysCounter = 0;
+
+
 
     public void setHealth(int health) {
         this.health = health;

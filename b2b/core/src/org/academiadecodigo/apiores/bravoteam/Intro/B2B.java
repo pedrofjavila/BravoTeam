@@ -65,19 +65,25 @@ public class B2B extends Game {
 		// Note: you MUST specify a FreetypeFontGenerator defining the ttf font file name and the size
 		// of the font to be generated. The names of the fonts are arbitrary and are not pointing
 		// to a file on disk (but must end with the font's file format '.ttf')!
-		FreetypeFontLoader.FreeTypeFontLoaderParameter handFont = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
 
+		FreetypeFontLoader.FreeTypeFontLoaderParameter handFont = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
 		handFont.fontFileName = "Font/IndieFlower-Regular.ttf";
 		handFont.fontParameters.size = 30;
 		handFont.fontParameters.color = Color.BLACK;
-		assetManager.load("hwsize20.ttf", BitmapFont.class, handFont);
-		FreetypeFontLoader.FreeTypeFontLoaderParameter handFont2 = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
+		assetManager.load("hwsize30_black.ttf", BitmapFont.class, handFont);
 
+		FreetypeFontLoader.FreeTypeFontLoaderParameter handFont2 = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
 		handFont2.fontFileName = "Font/IndieFlower-Regular.ttf";
-		handFont2.fontParameters.size = 30;
-		handFont2.fontParameters.color = Color.BLACK;
-		handFont2.fontParameters.color = Color.BLUE;
-		assetManager.load("hwsize20.ttf", BitmapFont.class, handFont);
+		handFont2.fontParameters.size = 40;
+		handFont2.fontParameters.color = Color.RED;
+		assetManager.load("hwsize40_red.ttf", BitmapFont.class, handFont2);
+
+		FreetypeFontLoader.FreeTypeFontLoaderParameter handFont3 = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
+		handFont3.fontFileName = "Font/IndieFlower-Regular.ttf";
+		handFont3.fontParameters.size = 40;
+		handFont3.fontParameters.color = Color.BLACK;
+		assetManager.load("hwsize40_black.ttf", BitmapFont.class, handFont3);
+
 
 		batch = new SpriteBatch();
 		camera = new OrthographicCamera();
@@ -92,7 +98,7 @@ public class B2B extends Game {
 		playerHitbox.y = 0;
 		playerHitbox.width = 64;
 		playerHitbox.height = 64;
-		screen = new Intro(getCamera(),getBatch());
+		screen = new Intro(player,getBatch());
 		menu = new mainMenu(getBatch(),getCamera());
 		opMenu = new optionsMenu(getBatch());
 		diary = new DiaryText(getBatch(), getCamera(), getAssetManager());
@@ -104,7 +110,7 @@ public class B2B extends Game {
 		intro_music = Gdx.audio.newMusic(Gdx.files.internal("Music/I Will Survive_intro.mp3"));
 		intro_music.setLooping(true);
 		intro_music.setVolume(0.50f);
-
+		diary.setPlayer(player);
 
 	}
 
@@ -123,8 +129,7 @@ public class B2B extends Game {
 			createImages();
 			userinputBlocked();
 			bg_music.play();
-			diary.render();
-			setDiaryMessage(this.player);
+
 		}
 		userInputs();
 	}
@@ -139,6 +144,7 @@ public class B2B extends Game {
 		coughing.dispose();
 		bg_music.dispose();
 		intro_music.dispose();
+
 
 	}
 
@@ -168,7 +174,10 @@ public class B2B extends Game {
 			opMenu.show();
 			opMenu.render(1);
 		}
-
+		if(Gdx.input.isKeyPressed(Input.Keys.D)) {
+			diary.render();
+			setDiaryMessage();
+		}
 		}
 		public void userinputBlocked(){
 			if(Gdx.input.isKeyPressed(Input.Keys.TAB)){
@@ -196,10 +205,13 @@ public class B2B extends Game {
 	}
 
 
-	public void setDiaryMessage( Player  player){
-		diary.setDaycounter(player.getDaysCounter());
+	public void setDiaryMessage( ){
+
+		//diary.setDaycounter(player.getDaysCounter());
 		diary.setEvent(Messages.EVENT_DAY_ZERO);
 	}
+
+
 }
 
 

@@ -29,8 +29,10 @@ public class Messages {
          "Isolation is not an option anymore...\n"+
          "It is a way of survival!!!";
 
- public static final String EVENT_DAY_TWO = "";
+ public static final String EVENT_DAY_ONE = "";
 
  // RANDOM EVENTS
  public static final String RANDOM_GOT_MUGGED = "I got mugged by marginals";
+
+ public static final String PLAYERSTATS = "Health  :  \n" + "Hunger  :  \n" + "Thirst  :  \n" + "Sanity  :  \n" ;
 }

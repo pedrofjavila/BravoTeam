@@ -16,12 +16,12 @@ import org.academiadecodigo.apiores.bravoteam.Intro.Menus.Player;
 public class Intro implements Screen {
 
     BitmapFont font = new BitmapFont();
-    private Player player = new Player();
+    private Player player;
     private SpriteBatch batch;
     private Texture test = new Texture("Images/badlogic.jpg ");
-    private OrthographicCamera camera;
-    public Intro (OrthographicCamera camera, SpriteBatch batch){
-        this.camera = camera;
+
+    public Intro (Player player, SpriteBatch batch){
+        this.player = player;
         this.batch = batch;
     }
 
