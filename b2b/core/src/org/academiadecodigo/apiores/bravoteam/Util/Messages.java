@@ -29,7 +29,24 @@ public class Messages {
          "Isolation is not an option anymore...\n"+
          "It is a way of survival!!!";
 
- public static final String EVENT_DAY_ONE = "";
+ public static final String EVENT_DAY_ONE = "I passed the last 24 hours in Isolation...\n"+
+         "I already feel anxious about be confined\n"+
+         "in 4 walls,waiting to the chance to go outside!\n"+
+         "I complained about the noise in the city...\n"+
+         "now I hate the silence, the waiting \n"+"" +
+         "for the next sound a car, a bike,\n"+
+         "people laughing, kids playing outside...\n" +
+         "Even my smelly, ugly, fucking neighbors,\n"+" I miss them!!!";
+
+ public static final String EVENT_DAY_TWO = "Someone dropped a newspaper at my door.\n"+
+         "I went mad, how irresponsible for someone\n"+
+         "to go outside delivering newspapers...\n"+
+         "then I became happy to have something to read!\n"+
+         "The PM of UK, Boris Jonhson got infected...\n" +
+         "AGAIN!!!\n"+
+         "I was happy to see greedy mean politics\n"+
+         "suffering for their procrastination!!!\n"+
+         "I already did the crosswords twice... ";
 
  // RANDOM EVENTS
  public static final String RANDOM_GOT_MUGGED = "I got mugged by marginals";

@@ -206,9 +206,18 @@ public class B2B extends Game {
 
 
 	public void setDiaryMessage( ){
+		switch(player.getDaysCounter()){
+			case 0:
+				diary.setEvent(Messages.EVENT_DAY_TWO);
+				break;
+			case 1:
+				diary.setEvent(Messages.EVENT_DAY_ONE);
+				break;
+			case 2:
+				diary.setEvent(Messages.EVENT_DAY_TWO);
+				break;
+		}
 
-		//diary.setDaycounter(player.getDaysCounter());
-		diary.setEvent(Messages.EVENT_DAY_ZERO);
 	}
 
 
