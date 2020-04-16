@@ -1,5 +1,8 @@
 package org.academiadecodigo.apiores.bravoteam.Intro;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Player {
 
     private int health = 100;
@@ -7,6 +10,9 @@ public class Player {
     private int thirst = 100;
     private int sanity = 100;
     private int dayCounter = 0;
+    private int waters = 10;
+    private int food = 10;
+   // List<Itens> Inventory = new LinkedList<>();
 
     public void setHealth(int health) {
         this.health = health;
@@ -46,5 +52,21 @@ public class Player {
 
     public void setDayCounter(int dayCounter) {
         this.dayCounter = dayCounter;
+    }
+
+    public int getWaters() {
+        return waters;
+    }
+
+    public void setWaters(int waters) {
+        this.waters = waters;
+    }
+
+    public int getFood() {
+        return food;
+    }
+
+    public void setFood(int food) {
+        this.food = food;
     }
 }

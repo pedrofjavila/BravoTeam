@@ -28,6 +28,8 @@ public class Intro implements Screen {
     public void render(float delta) {
         batch.begin();
         font.getData().setScale(2.5f,2.5f);
+        font.draw(batch,"Waters: "+player.getWaters(),10,350);
+        font.draw(batch,"Food: "+player.getFood(),10,300);
         font.draw(batch,"Day: "+player.getDayCounter(),10,250);
         font.draw(batch,"Health: " + player.getHealth(),10,200);
         font.draw(batch,"Hunger: "+ player.getHunger(),10,150);

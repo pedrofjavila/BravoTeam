@@ -43,12 +43,13 @@ public class B2B extends Game {
     private Sound coughing;
     private Intro intro;
     private AssetManager assetManager;
-    private Player player1 = new Player();
+    private Player player1;
     private int GoOut = 1;
     private int GoWalk = 1;
     private int GoPharma = 1;
     @Override
     public void create() {
+        player1 = new Player();
         font = new BitmapFont();
         batch = new SpriteBatch();
         camera = new OrthographicCamera();
@@ -152,6 +153,8 @@ public class B2B extends Game {
             background = new Texture("goingOutsideTemp.png");
 
             batch.draw(background, 0, 0, 1920, 1136);
+            player1.setWaters(player1.getWaters()+1);
+            player1.setFood(player1.getFood()+1);
             player1.setSanity(player1.getSanity() - 10);
             player1.setHunger(player1.getHunger() - 20);
             player1.setThirst(player1.getThirst() - 20);
@@ -168,7 +171,7 @@ public class B2B extends Game {
             background = new Texture("goingOutsideTemp.png");
 
             batch.draw(background, 0, 0, 1920, 1136);
-            player1.setSanity(player1.getSanity() - 10);
+            player1.setSanity(player1.getSanity() + 50);
             player1.setHunger(player1.getHunger() - 20);
             player1.setThirst(player1.getThirst() - 20);
             batch.end();
@@ -192,7 +195,22 @@ public class B2B extends Game {
 
         }
         if(Gdx.input.isKeyPressed(Input.Keys.NUM_4)){
-            player1.setDayCounter(+1);
+            player1.setDayCounter(player1.getDayCounter()+1);
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.D)){
+            player1.setThirst(player1.getThirst()+20);
+            player1.setWaters(player1.getWaters()-1);
+            if(player1.getWaters() >= 0){
+                player1.setWaters(0);
+                player1.setThirst(player1.getThirst());
+            }
+        }if(Gdx.input.isKeyPressed(Input.Keys.E)){
+            player1.setHunger(player1.getHunger()+20);
+            player1.setFood(player1.getFood()-1);
+            if(player1.getFood() >= 0){
+                player1.setFood(0);
+                player1.setHunger(player1.getHunger());
+            }
         }
 
     }
