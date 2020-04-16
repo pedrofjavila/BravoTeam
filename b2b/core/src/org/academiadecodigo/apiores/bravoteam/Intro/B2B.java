@@ -14,6 +14,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import org.academiadecodigo.apiores.bravoteam.Diary.DiaryText;
@@ -26,7 +27,6 @@ public class B2B extends Game {
 
 	private SpriteBatch batch;
 	private OrthographicCamera camera;
-	private Boolean start = false;
 
 	// Screens
 	private mainMenu menu;
@@ -48,7 +48,10 @@ public class B2B extends Game {
 	private Intro intro;
 	private AssetManager assetManager;
 	private Player player;
-
+	//
+	private Boolean start = false;
+	private boolean isTpressed = false;
+	private boolean isDpressed = false;
 
 	@Override
 	public void create() {
@@ -118,19 +121,26 @@ public class B2B extends Game {
 	public void render() {
 		camera.update();
 		assetManager.update();
-		System.gc();
+
 		if(!start){
 			intro_music.play();
 			menu.render();
 
 		}
-		if(start){
+		if(isTpressed){
 			intro_music.pause();
 			createImages();
 			userinputBlocked();
 			bg_music.play();
 
+
 		}
+		if(isDpressed){
+			diary.render();
+			setDiaryMessage();
+
+		}
+
 		userInputs();
 	}
 
@@ -165,7 +175,28 @@ public class B2B extends Game {
 
 
 		}
-		if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
+
+		if (Gdx.input.isKeyPressed(Input.Keys.T)){
+			isTpressed = true;
+		}
+		if(Gdx.input.isKeyPressed(Input.Keys.Y)) {
+			isTpressed= false;
+
+		}
+
+		if(Gdx.input.isKeyPressed(Input.Keys.D )) {
+			isDpressed= true;
+
+				//diary.render();
+				//setDiaryMessage();
+
+
+		}
+		if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
+			isDpressed = false;
+
+			}
+		if(Gdx.input.isKeyPressed(Input.Keys.F10)){
 
 			System.exit(1);
 		}
@@ -173,10 +204,6 @@ public class B2B extends Game {
 
 			opMenu.show();
 			opMenu.render(1);
-		}
-		if(Gdx.input.isKeyPressed(Input.Keys.D)) {
-			diary.render();
-			setDiaryMessage();
 		}
 		}
 		public void userinputBlocked(){
@@ -206,9 +233,10 @@ public class B2B extends Game {
 
 
 	public void setDiaryMessage( ){
+		int random = MathUtils.random(7,10);
 		switch(player.getDaysCounter()){
 			case 0:
-				diary.setEvent(Messages.EVENT_DAY_THREE);
+				diary.setEvent(Messages.EVENT_DAY_ZERO);
 				break;
 			case 1:
 				diary.setEvent(Messages.EVENT_DAY_ONE);
@@ -225,7 +253,10 @@ public class B2B extends Game {
 			case 5:
 				diary.setEvent(Messages.EVENT_DAY_FIVE);
 				break;
-
+			case 6:
+				diary.setEvent(Messages.EVENT_DAY_SIX);
+			default:
+				diary.setEvent(Messages.EVENT_DAYS_LOST);
 		}
 
 	}
