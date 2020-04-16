@@ -10,6 +10,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
+import org.academiadecodigo.apiores.bravoteam.Intro.Factory.itemFactory;
+import org.academiadecodigo.apiores.bravoteam.Intro.Factory.itens;
 import org.academiadecodigo.apiores.bravoteam.Intro.Menus.mainMenu;
 import org.academiadecodigo.apiores.bravoteam.Intro.Menus.optionsMenu;
 import org.academiadecodigo.apiores.bravoteam.Intro.Screens.Intro;
@@ -85,7 +87,6 @@ public class B2B extends Game {
             menu.render();
         }
         if (water) {
-            System.out.println("yeah");
             batch.begin();
             font.draw(batch, "hello", 250, 250);
             batch.end();
@@ -151,7 +152,8 @@ public class B2B extends Game {
             batch.begin();
 
             background = new Texture("goingOutsideTemp.png");
-
+            player1.getInventory().add(itemFactory.createItem(itens.WATER));
+            player1.getInventory().add(itemFactory.createItem(itens.FOOD));
             batch.draw(background, 0, 0, 1920, 1136);
             player1.setWaters(player1.getWaters()+1);
             player1.setFood(player1.getFood()+1);
@@ -169,7 +171,7 @@ public class B2B extends Game {
         if (Gdx.input.isKeyPressed(Input.Keys.NUM_2)) {
             batch.begin();
             background = new Texture("goingOutsideTemp.png");
-
+            player1.getInventory().add(itemFactory.createItem(itens.GUITAR));
             batch.draw(background, 0, 0, 1920, 1136);
             player1.setSanity(player1.getSanity() + 50);
             player1.setHunger(player1.getHunger() - 20);
@@ -184,7 +186,7 @@ public class B2B extends Game {
             batch.begin();
 
             background = new Texture("goingOutsideTemp.png");
-
+            player1.getInventory().add(itemFactory.createItem(itens.SANITIZER));
             batch.draw(background, 0, 0, 1920, 1136);
             player1.setSanity(player1.getSanity() - 10);
             player1.setHunger(player1.getHunger() - 20);

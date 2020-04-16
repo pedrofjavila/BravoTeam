@@ -19,7 +19,6 @@ public class mainMenu {
     private Texture menu = new Texture("menuImage7.png");
     //Animation<TextureRegion> animation;
 
-    float elapsed;
 
     public mainMenu(SpriteBatch batch,OrthographicCamera camera){
         this.camera = camera;
@@ -29,7 +28,6 @@ public class mainMenu {
 
 
     public void render() {
-        elapsed += 0.2;
         batch.begin();
         batch.draw(menu, 0,0,1920,1134);
         batch.end();
