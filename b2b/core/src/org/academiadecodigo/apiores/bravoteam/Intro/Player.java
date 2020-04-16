@@ -1,4 +1,4 @@
-package org.academiadecodigo.apiores.bravoteam.Intro.Menus;
+package org.academiadecodigo.apiores.bravoteam.Intro;
 
 public class Player {
 
@@ -6,6 +6,7 @@ public class Player {
     private int hunger = 100;
     private int thirst = 100;
     private int sanity = 100;
+    private int dayCounter = 0;
 
     public void setHealth(int health) {
         this.health = health;
@@ -37,5 +38,13 @@ public class Player {
 
     public int getSanity() {
         return sanity;
+    }
+
+    public int getDayCounter() {
+        return dayCounter;
+    }
+
+    public void setDayCounter(int dayCounter) {
+        this.dayCounter = dayCounter;
     }
 }

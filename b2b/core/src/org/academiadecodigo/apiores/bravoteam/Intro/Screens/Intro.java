@@ -1,27 +1,20 @@
-package org.academiadecodigo.apiores.bravoteam.Intro;
+package org.academiadecodigo.apiores.bravoteam.Intro.Screens;
 
 
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField;
-import org.academiadecodigo.apiores.bravoteam.Intro.Menus.Player;
+import org.academiadecodigo.apiores.bravoteam.Intro.Player;
 
 public class Intro implements Screen {
 
     BitmapFont font = new BitmapFont();
-    private Player player = new Player();
+    private Player player;
     private SpriteBatch batch;
-    private Texture test = new Texture("badlogic.jpg ");
-    private OrthographicCamera camera;
-    public Intro (OrthographicCamera camera, SpriteBatch batch){
-        this.camera = camera;
+    public Intro (Player player, SpriteBatch batch){
+        this.player = player;
         this.batch = batch;
     }
 
@@ -35,6 +28,7 @@ public class Intro implements Screen {
     public void render(float delta) {
         batch.begin();
         font.getData().setScale(2.5f,2.5f);
+        font.draw(batch,"Day: "+player.getDayCounter(),10,250);
         font.draw(batch,"Health: " + player.getHealth(),10,200);
         font.draw(batch,"Hunger: "+ player.getHunger(),10,150);
         font.draw(batch,"Thirst: "+ player.getThirst(),10,100);
@@ -65,6 +59,6 @@ public class Intro implements Screen {
     @Override
     public void dispose() {
         batch.dispose();
-        test.dispose();
+
     }
 }

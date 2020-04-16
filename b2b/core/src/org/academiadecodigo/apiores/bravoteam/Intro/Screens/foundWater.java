@@ -1,21 +1,21 @@
-package org.academiadecodigo.apiores.bravoteam.Intro.Menus;
+package org.academiadecodigo.apiores.bravoteam.Intro.Screens;
 
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class optionsMenu implements Screen {
+public class foundWater implements Screen {
 
     private SpriteBatch batch;
-    private Texture optionMenu = new Texture("optionsTemp.png");
-    public optionsMenu (SpriteBatch batch){
+    BitmapFont font2 = new BitmapFont();
+    public foundWater(SpriteBatch batch){
         this.batch = batch;
     }
-
     @Override
     public void show() {
         batch.begin();
-        batch.draw(optionMenu,250,250);
+        font2.setColor(234,34,156,78);
+        font2.draw(batch,"You have found: Water",150,150);
         batch.end();
     }
 
