@@ -42,7 +42,8 @@ public class DiaryText  {
 
     public void render() {
         batch.begin();
-        batch.draw(diary,300,200,1350,700,);
+        batch.draw(diary,300,200,1350,700);
+        
         if (assetManager.isLoaded("hwsize30_black.ttf")){
 
             playerStats=  player.getHealth() +"\n" +
