@@ -3,6 +3,7 @@ package org.academiadecodigo.apiores.bravoteam.Intro.miniGames;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -10,20 +11,22 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Event;
-import com.badlogic.gdx.scenes.scene2d.EventListener;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.Timer;
+import org.academiadecodigo.apiores.bravoteam.Intro.B2B;
 
 import java.util.Iterator;
 
-public class MyGdxGame extends Stage {
+public class MyGdxGame implements Screen {
+
+
+    public MyGdxGame(SpriteBatch batch,OrthographicCamera camera) {
+        this.batch = batch;
+      this.camera = camera;
+    }
 
     private SpriteBatch batch;
-    private Stage stage = new Stage();
 
     private OrthographicCamera camera;
 
@@ -47,15 +50,11 @@ public class MyGdxGame extends Stage {
     private Array<Rectangle> soraiaDrops;
     private Array<Rectangle> ricardoDrops;
 
-
     public void create() {
 
         batch = new SpriteBatch();
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, 800, 480);
-
-        background = new Texture("backgrd.jpg");
-        playerImage = new Texture("oldman.png");
+        background = new Texture("minigame1/background.jpg");
+        playerImage = new Texture("minigame1/flip2.png");
 
         player = new Rectangle();
         player.x = 0;
@@ -65,17 +64,64 @@ public class MyGdxGame extends Stage {
 
         touchPos = new Vector3();
 
+		sound = Gdx.audio.newSound(Gdx.files.internal("minigame1/sound.mp3"));
+		music = Gdx.audio.newMusic(Gdx.files.internal("minigame1/music.mp3"));
+		music.setLooping(true);
+
+		music.setVolume(0.1f);
 
 
+        jojoDrops = new Array<Rectangle>();
 
+        jojo = new Texture("minigame1/jojo.png");
+        jojoDrops = new Array<Rectangle>();
 
+        rita = new Texture("minigame1/rita.png");
+        ritaDrops = new Array<Rectangle>();
+
+        soraia = new Texture("minigame1/soraia.png");
+        soraiaDrops = new Array<Rectangle>();
+
+        ricardo = new Texture("minigame1/ricardo.png");
+        ricardoDrops = new Array<Rectangle>();
 
         spawnDrops();
     }
 
-    public void render() {
+    @Override
+    public void show() {
+
+    }
+
+
+    @Override
+    public void resize(int width, int height) {
+
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
+
+    }
+
+    @Override
+    public void hide() {
+
+    }
+
+    @Override
+    public void render(float delta) {
 
         camera.update();
+        moveDrops(ricardoDrops);
+        moveDrops(jojoDrops);
+        moveDrops(ritaDrops);
+        moveDrops(soraiaDrops);
         createImages();
         userInputs();
 
@@ -86,7 +132,10 @@ public class MyGdxGame extends Stage {
         batch.dispose();
         background.dispose();
         playerImage.dispose();
-
+        jojo.dispose();
+        rita.dispose();
+        ricardo.dispose();
+        soraia.dispose();
 
 		sound.dispose();
 		music.dispose();
@@ -101,10 +150,24 @@ public class MyGdxGame extends Stage {
 
         batch.begin();
 
-        batch.draw(background, 0, 0);
+        batch.draw(background, 0, 0,1920,1136);
         batch.draw(playerImage, player.x, player.y);
 
+        for (Rectangle drop : ritaDrops) {
+            batch.draw(soraia, drop.x, drop.y);
+        }
 
+        for (Rectangle drop : jojoDrops) {
+            batch.draw(jojo, drop.x, drop.y);
+        }
+
+        for (Rectangle drop : soraiaDrops) {
+            batch.draw(rita, drop.x, drop.y);
+        }
+
+        for (Rectangle drop : ricardoDrops) {
+            batch.draw(ricardo, drop.x, drop.y);
+        }
 
         batch.end();
 
@@ -113,10 +176,29 @@ public class MyGdxGame extends Stage {
     private void spawnDrops() {
         int random = (int) (Math.random() * 4);
 
+        Rectangle jojo;
+        jojo = new Rectangle();
+        jojo.x = 972;
+        jojo.y = (int) (Math.random() * 400);
+        jojo.width = 34;
+        jojo.height = 34;
 
 
 
-
+        switch (random) {
+            case 0:
+                jojoDrops.add(jojo);
+                break;
+            case 1:
+                ritaDrops.add(jojo);
+                break;
+            case 2:
+                ricardoDrops.add(jojo);
+                break;
+            default:
+                soraiaDrops.add(jojo);
+        }
+        dropRate = TimeUtils.nanoTime();
     }
 
     private void moveDrops(Array<Rectangle> drops) {
@@ -134,7 +216,7 @@ public class MyGdxGame extends Stage {
 
             if (drop.overlaps(player) && kill) {
 
-
+				sound.play();
                 iterator.remove();
             }
         }
@@ -154,7 +236,7 @@ public class MyGdxGame extends Stage {
 
         if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
 
-            playerImage = new Texture("flip3.png");
+            playerImage = new Texture("minigame1/flip3.png");
             kill = true;
         }
 
@@ -165,7 +247,7 @@ public class MyGdxGame extends Stage {
             Timer.schedule(new Timer.Task() {
                 @Override
                 public void run() {
-                    playerImage = new Texture("flip2.png");
+                    playerImage = new Texture("minigame1/flip2.png");
                     kill = false;
                 }
             }, (float) delay);
@@ -202,5 +284,13 @@ public class MyGdxGame extends Stage {
         if (player.y > 750) {
             player.y = 750;
         }
+    }
+
+    public Sound getSound() {
+        return sound;
+    }
+
+    public Music getMusic() {
+        return music;
     }
 }
