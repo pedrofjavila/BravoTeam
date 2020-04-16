@@ -1,63 +1,82 @@
 package org.academiadecodigo.apiores.bravoteam.Intro;
 
 import com.badlogic.gdx.*;
-import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.TextureData;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import org.academiadecodigo.apiores.bravoteam.Intro.Factory.itemFactory;
-import org.academiadecodigo.apiores.bravoteam.Intro.Factory.itens;
-import org.academiadecodigo.apiores.bravoteam.Intro.Menus.mainMenu;
-import org.academiadecodigo.apiores.bravoteam.Intro.Menus.optionsMenu;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import org.academiadecodigo.apiores.bravoteam.Intro.Screens.Intro;
+import org.academiadecodigo.apiores.bravoteam.Intro.Screens.Mainmenu;
 import org.academiadecodigo.apiores.bravoteam.Intro.Screens.foundWater;
-import org.academiadecodigo.apiores.bravoteam.Intro.miniGames.MyGdxGame;
+
 
 public class B2B extends Game {
-    private boolean game = false;
+
 
     private SpriteBatch batch;
-    private mainMenu menu;
-    private optionsMenu opMenu;
-    private OrthographicCamera camera;
-    private foundWater ff;
+    private ShapeRenderer shapeRenderer;
     private BitmapFont font;
-    private Boolean start = false;
-    private Boolean water = false;
-    private Texture background3;
-    // Texture /
-    private Texture background;
-    private Texture backgroundWater;
-    private Texture background4;
-    private Texture playerImage;
-    private Texture drop;
-    MyGdxGame myGdxGame;
-
-    private Rectangle player;
-    private Stage stage;
-    private Vector3 touchPos;
-    private KeyboardProcessor keyboardProcessor;
-    // sound and music//
-    private Music bg_music;
-    private Music intro_music;
-    private Sound coughing;
-    private Intro intro;
-    private AssetManager assetManager;
-    private Player player1;
-    private int GoOut = 1;
-    private int GoWalk = 1;
-    private int GoPharma = 1;
-    int counter = 0;
+    @Override
+    public void create() {
+        batch = new SpriteBatch();
+        shapeRenderer = new ShapeRenderer();
+        font = new BitmapFont();
+        setScreen(new Mainmenu(this));
+    }
 
     @Override
+    public void dispose(){
+        batch.dispose();
+        shapeRenderer.dispose();
+        font.dispose();
+    }
+
+    public SpriteBatch getBatch() {
+        return batch;
+    }
+
+    public ShapeRenderer getShapeRenderer() {
+        return shapeRenderer;
+    }
+
+    public BitmapFont getFont() {
+        return font;
+    }
+//private boolean game = false;
+
+
+    //private mainMenu menu;
+    //private optionsMenu opMenu;
+    //private OrthographicCamera camera;
+    //private foundWater ff;
+    //private BitmapFont font;
+    //private Boolean start = false;
+    //private Boolean water = false;
+    //private Texture background3;
+    // Texture /
+    //private Texture background;
+    //private Texture backgroundWater;
+    //private Texture background4;
+    //private Texture playerImage;
+    //private Texture drop;
+   // MyGdxGame myGdxGame;
+
+    // private Rectangle player;
+    //private Stage stage;
+    // private Vector3 touchPos;
+    // private KeyboardProcessor keyboardProcessor;
+    // sound and music//
+    // private Music bg_music;
+    //private Music intro_music;
+    // private Sound coughing;
+    // private Intro intro;
+    //private AssetManager assetManager;
+    //private Player player1;
+    // private int GoOut = 1;
+    //private int GoWalk = 1;
+    // private int GoPharma = 1;
+    //int counter = 0;
+
+   /* @Override
     public void create() {
 
         stage = new Stage();
@@ -90,6 +109,7 @@ public class B2B extends Game {
         bg_music.play();
         myGdxGame = new MyGdxGame(getBatch(), getCamera());
         myGdxGame.create();
+
     }
 
     @Override
@@ -151,6 +171,7 @@ public class B2B extends Game {
         if (Gdx.input.isKeyPressed(Input.Keys.T)) {
             game = true;
             bg_music.stop();
+           this.setScreen(new MyGdxGame(getBatch(),getCamera()));
 
 
 
@@ -388,7 +409,7 @@ public class B2B extends Game {
 
     public int getCounter() {
         return counter;
-    }
+    }*/
 }
 
 

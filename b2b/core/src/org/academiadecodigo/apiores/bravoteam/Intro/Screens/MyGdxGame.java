@@ -1,4 +1,4 @@
-package org.academiadecodigo.apiores.bravoteam.Intro.miniGames;
+package org.academiadecodigo.apiores.bravoteam.Intro.Screens;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -21,14 +21,14 @@ import java.util.Iterator;
 public class MyGdxGame implements Screen {
 
 
-    public MyGdxGame(SpriteBatch batch,OrthographicCamera camera) {
-        this.batch = batch;
-      this.camera = camera;
+   private B2B game;
+
+    public MyGdxGame(B2B game) {
+        this.game = game;
     }
 
-    private SpriteBatch batch;
 
-    private OrthographicCamera camera;
+
 
     private Texture background;
     private Texture playerImage;
@@ -52,7 +52,7 @@ public class MyGdxGame implements Screen {
 
     public void create() {
 
-        batch = new SpriteBatch();
+
         background = new Texture("minigame1/background.jpg");
         playerImage = new Texture("minigame1/flip2.png");
 
@@ -117,7 +117,7 @@ public class MyGdxGame implements Screen {
     @Override
     public void render(float delta) {
 
-        camera.update();
+
         moveDrops(ricardoDrops);
         moveDrops(jojoDrops);
         moveDrops(ritaDrops);
@@ -129,14 +129,13 @@ public class MyGdxGame implements Screen {
 
     @Override
     public void dispose() {
-        batch.dispose();
+
         background.dispose();
         playerImage.dispose();
         jojo.dispose();
         rita.dispose();
         ricardo.dispose();
         soraia.dispose();
-
 		sound.dispose();
 		music.dispose();
 
@@ -146,30 +145,30 @@ public class MyGdxGame implements Screen {
 
         int counter = 0;
 
-        batch.setProjectionMatrix(camera.combined);
 
-        batch.begin();
 
-        batch.draw(background, 0, 0,1920,1136);
-        batch.draw(playerImage, player.x, player.y);
+        game.getBatch().begin();
+
+        game.getBatch().draw(background, 0, 0,1920,1136);
+        game.getBatch().draw(playerImage, player.x, player.y);
 
         for (Rectangle drop : ritaDrops) {
-            batch.draw(soraia, drop.x, drop.y);
+            game.getBatch().draw(soraia, drop.x, drop.y);
         }
 
         for (Rectangle drop : jojoDrops) {
-            batch.draw(jojo, drop.x, drop.y);
+            game.getBatch().draw(jojo, drop.x, drop.y);
         }
 
         for (Rectangle drop : soraiaDrops) {
-            batch.draw(rita, drop.x, drop.y);
+            game.getBatch().draw(rita, drop.x, drop.y);
         }
 
         for (Rectangle drop : ricardoDrops) {
-            batch.draw(ricardo, drop.x, drop.y);
+            game.getBatch().draw(ricardo, drop.x, drop.y);
         }
 
-        batch.end();
+        game.getBatch().end();
 
     }
 
@@ -229,7 +228,7 @@ public class MyGdxGame implements Screen {
 
         if (Gdx.input.isTouched()) {
             touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-            camera.unproject(touchPos);
+
             player.x = touchPos.x - 25;
             player.y = touchPos.y;
         }
