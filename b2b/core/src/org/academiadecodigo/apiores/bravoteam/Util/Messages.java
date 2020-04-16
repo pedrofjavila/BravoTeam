@@ -38,15 +38,42 @@ public class Messages {
          "people laughing, kids playing outside...\n" +
          "Even my smelly, ugly, fucking neighbors,\n"+" I miss them!!!";
 
- public static final String EVENT_DAY_TWO = "Someone dropped a newspaper at my door.\n"+
+ public static final String EVENT_DAY_TWO = "I found a newspaper at my door.\n"+
          "I went mad, how irresponsible for someone\n"+
          "to go outside delivering newspapers...\n"+
-         "then I became happy to have something to read!\n"+
+         "then I became happy to read something!\n"+
          "The PM of UK, Boris Jonhson got infected...\n" +
          "AGAIN!!!\n"+
          "I was happy to see greedy mean politics\n"+
          "suffering for their procrastination!!!\n"+
          "I already did the crosswords twice... ";
+ public static final String EVENT_DAY_THREE = "The TV is out...\n"+
+         "no one is broadcasting a tv signal anymore...\n"+
+         "Not even the army, is broadcasting RF signals\n"+
+         "The only outside contact is my radio\n"+
+         "working on low frequencies by HAM radios,\n"+
+         "getting news of business still open\n"+
+         "or maybe it is a trap...";
+
+ public static final String EVENT_DAY_FOUR = "He went back to his solitary wanderings.\n"+
+         "Believing any set of four walls\n"+
+         "to be a tomb or a trap,\n"+
+         "he preferred to float over\n"+
+         "the most barren of open spaces.";
+
+ public static final String EVENT_DAY_FIVE = "My companions are the cockroaches\n"+
+         "that careful wander around, not afraid of me\n"+
+         "I hated cockroaches, now they look like pets...\n"+
+         "They are still disgusting, but cute...\n"+
+         "I must be mad to start talking to cockroaches...\n";
+
+ public static final String EVENT_DAY_SIX = "I made a friend...\n"+
+         "his name is Roast, I think it is a he...\n"+
+         "this confining is killing me, I am not insane\n"+
+         "Roast says that mad people say that...\n"+
+         "Roast was roasted, good source of protein!!!\n"+
+         "I need to make more friends";
+
 
  // RANDOM EVENTS
  public static final String RANDOM_GOT_MUGGED = "I got mugged by marginals";
