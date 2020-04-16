@@ -74,8 +74,8 @@ public class B2B extends Game {
         coughing = Gdx.audio.newSound(Gdx.files.internal("503749__strangelandspod__sick-man-coughing-in-mall-food-court.mp3"));
         bg_music = Gdx.audio.newMusic(Gdx.files.internal("512196__legend1060__an-epicenter-and-a-pandemic.mp3"));
         bg_music.setLooping(true);
-        bg_music.setVolume(0.50f);
-        //bg_music.play();
+        bg_music.setVolume(0.10f);
+        bg_music.play();
 
     }
 
@@ -187,6 +187,7 @@ public class B2B extends Game {
 
             background = new Texture("goingOutsideTemp.png");
             player1.getInventory().add(itemFactory.createItem(itens.SANITIZER));
+
             batch.draw(background, 0, 0, 1920, 1136);
             player1.setSanity(player1.getSanity() - 10);
             player1.setHunger(player1.getHunger() - 20);
