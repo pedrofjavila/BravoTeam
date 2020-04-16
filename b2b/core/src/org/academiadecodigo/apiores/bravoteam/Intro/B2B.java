@@ -122,10 +122,11 @@ public class B2B extends Game {
 	public void render() {
 		camera.update();
 		assetManager.update();
-
+		menuInputs();
 		if(!start){
 			intro_music.play();
 			menu.render();
+			userInputs();
 
 		}
 		if(isTpressed){
@@ -133,16 +134,16 @@ public class B2B extends Game {
 			createImages();
 			userinputBlocked();
 			bg_music.play();
-
+			userInputs();
 
 		}
 		if(isDpressed){
 			diary.render();
 			setDiaryMessage();
-
+			userInputs();
 		}
 
-		userInputs();
+
 	}
 
 	@Override
@@ -167,7 +168,25 @@ public class B2B extends Game {
 		//batch.draw(playerImage, player.x, player.y);
 		batch.end();
 	}
+ 	private void menuInputs(){
 
+		if(Gdx.input.isKeyPressed(Input.Keys.Y)){
+			start = true;
+		}
+
+		if (Gdx.input.isKeyPressed(Input.Keys.T)){
+			isTpressed = true;
+		}
+		if(Gdx.input.isKeyPressed(Input.Keys.R)) {
+			isTpressed= false;
+
+		}
+		if(Gdx.input.isKeyPressed(Input.Keys.M)){
+
+			opMenu.show();
+			opMenu.render(1);
+		}
+	}
 	private void userInputs() {
 
 
