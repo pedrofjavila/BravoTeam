@@ -5,19 +5,23 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import org.academiadecodigo.apiores.bravoteam.Intro.Factory.itemFactory;
 import org.academiadecodigo.apiores.bravoteam.Intro.Factory.itens;
 import org.academiadecodigo.apiores.bravoteam.Intro.Menus.mainMenu;
 import org.academiadecodigo.apiores.bravoteam.Intro.Menus.optionsMenu;
 import org.academiadecodigo.apiores.bravoteam.Intro.Screens.Intro;
 import org.academiadecodigo.apiores.bravoteam.Intro.Screens.foundWater;
+import org.academiadecodigo.apiores.bravoteam.Intro.miniGames.MyGdxGame;
 
 public class B2B extends Game {
+    private boolean game = false;
 
     private SpriteBatch batch;
     private mainMenu menu;
@@ -34,11 +38,12 @@ public class B2B extends Game {
     private Texture background4;
     private Texture playerImage;
     private Texture drop;
+    MyGdxGame myGdxGame;
 
     private Rectangle player;
-
+    private Stage stage;
     private Vector3 touchPos;
-
+    private KeyboardProcessor keyboardProcessor;
     // sound and music//
     private Music bg_music;
     private Music intro_music;
@@ -49,8 +54,13 @@ public class B2B extends Game {
     private int GoOut = 1;
     private int GoWalk = 1;
     private int GoPharma = 1;
+    int counter = 0;
     @Override
     public void create() {
+
+        stage = new Stage();
+        keyboardProcessor = new KeyboardProcessor(this);
+        myGdxGame = new MyGdxGame();
         player1 = new Player();
         font = new BitmapFont();
         batch = new SpriteBatch();
@@ -77,6 +87,7 @@ public class B2B extends Game {
         bg_music.setVolume(0.10f);
         bg_music.play();
 
+
     }
 
     @Override
@@ -86,6 +97,7 @@ public class B2B extends Game {
         if (!start) {
             menu.render();
         }
+
         if (water) {
             batch.begin();
             font.draw(batch, "hello", 250, 250);
@@ -93,7 +105,14 @@ public class B2B extends Game {
         }
 
         if (start) {
-
+            if(game){
+                background.dispose();
+                myGdxGame.create();
+                myGdxGame.render();
+                if(myGdxGame == null){
+                    background = new Texture("backgrd.jpg");
+                }
+            }
             createImages();
             userinputBlocked();
         }
@@ -113,6 +132,7 @@ public class B2B extends Game {
         screen.dispose();
         opMenu.dispose();
         ff.dispose();
+        myGdxGame.dispose();
 
 
     }
@@ -147,7 +167,7 @@ public class B2B extends Game {
             screen.show();
             screen.render(2);
         }
-        if (Gdx.input.isKeyPressed((Input.Keys.NUM_1))) {
+        if (Gdx.input.isKeyJustPressed((Input.Keys.NUM_1))) {
 
             batch.begin();
 
@@ -168,21 +188,25 @@ public class B2B extends Game {
 
         }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.NUM_2)) {
-            batch.begin();
-            background = new Texture("goingOutsideTemp.png");
-            player1.getInventory().add(itemFactory.createItem(itens.GUITAR));
-            batch.draw(background, 0, 0, 1920, 1136);
-            player1.setSanity(player1.getSanity() + 50);
-            player1.setHunger(player1.getHunger() - 20);
-            player1.setThirst(player1.getThirst() - 20);
-            batch.end();
+        if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_2)) {
 
-            setBackground(background3);
+               batch.begin();
+               background = new Texture("goingOutsideTemp.png");
+               player1.getInventory().add(itemFactory.createItem(itens.GUITAR));
+
+               batch.draw(background, 0, 0, 1920, 1136);
+
+               player1.setSanity(player1.getSanity() + 50);
+               player1.setHunger(player1.getHunger() - 20);
+               player1.setThirst(player1.getThirst() - 20);
+               batch.end();
+               setBackground(background3);
+
+
 
 
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.NUM_3)){
+        if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_3)){
             batch.begin();
 
             background = new Texture("goingOutsideTemp.png");
@@ -200,20 +224,22 @@ public class B2B extends Game {
         if(Gdx.input.isKeyPressed(Input.Keys.NUM_4)){
             player1.setDayCounter(player1.getDayCounter()+1);
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.D)){
+        if(Gdx.input.isKeyJustPressed(Input.Keys.D)){
             player1.setThirst(player1.getThirst()+20);
             player1.setWaters(player1.getWaters()-1);
             if(player1.getWaters() >= 0){
                 player1.setWaters(0);
                 player1.setThirst(player1.getThirst());
             }
-        }if(Gdx.input.isKeyPressed(Input.Keys.E)){
-            player1.setHunger(player1.getHunger()+20);
-            player1.setFood(player1.getFood()-1);
-            if(player1.getFood() >= 0){
-                player1.setFood(0);
-                player1.setHunger(player1.getHunger());
+        }if(Gdx.input.isKeyJustPressed(Input.Keys.E)){
+                teste();
+
+
             }
+
+
+        if(Gdx.input.isKeyPressed(Input.Keys.T)){
+
         }
 
     }
@@ -236,6 +262,124 @@ public class B2B extends Game {
         ff.render(2);
         this.background = background;
         batch.end();
+    }
+
+    public void teste(){
+            player1.setHunger(player1.getHunger() + 20);
+            player1.setFood(player1.getFood() - 1);
+            this.counter = 1;
+            if (player1.getFood() >= 0) {
+                player1.setFood(0);
+                player1.setHunger(player1.getHunger());
+                this.counter = 1;
+            }
+
+
+    }
+
+
+    public boolean isGame() {
+        return game;
+    }
+
+    public mainMenu getMenu() {
+        return menu;
+    }
+
+    public optionsMenu getOpMenu() {
+        return opMenu;
+    }
+
+    public foundWater getFf() {
+        return ff;
+    }
+
+    public BitmapFont getFont() {
+        return font;
+    }
+
+    public Boolean getStart() {
+        return start;
+    }
+
+    public Boolean getWater() {
+        return water;
+    }
+
+    public Texture getBackground3() {
+        return background3;
+    }
+
+    public Texture getBackground() {
+        return background;
+    }
+
+    public Texture getBackgroundWater() {
+        return backgroundWater;
+    }
+
+    public Texture getBackground4() {
+        return background4;
+    }
+
+    public Texture getPlayerImage() {
+        return playerImage;
+    }
+
+    public Texture getDrop() {
+        return drop;
+    }
+
+    public MyGdxGame getMyGdxGame() {
+        return myGdxGame;
+    }
+
+    public Rectangle getPlayer() {
+        return player;
+    }
+
+    public Vector3 getTouchPos() {
+        return touchPos;
+    }
+
+    public Music getBg_music() {
+        return bg_music;
+    }
+
+    public Music getIntro_music() {
+        return intro_music;
+    }
+
+    public Sound getCoughing() {
+        return coughing;
+    }
+
+    public Intro getIntro() {
+        return intro;
+    }
+
+    public AssetManager getAssetManager() {
+        return assetManager;
+    }
+
+    public Player getPlayer1() {
+        return player1;
+    }
+
+    public int getGoOut() {
+        return GoOut;
+    }
+
+    public int getGoWalk() {
+        return GoWalk;
+    }
+
+    public int getGoPharma() {
+        return GoPharma;
+    }
+
+    public int getCounter() {
+        return counter;
     }
 }
 
