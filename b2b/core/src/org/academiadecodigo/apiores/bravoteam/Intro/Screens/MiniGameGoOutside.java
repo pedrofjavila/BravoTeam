@@ -1,6 +1,5 @@
 package org.academiadecodigo.apiores.bravoteam.Intro.Screens;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
@@ -14,22 +13,20 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.Timer;
-import org.academiadecodigo.apiores.bravoteam.Intro.B2B;
+import org.academiadecodigo.apiores.bravoteam.Intro.theConfining;
 
 import java.util.Iterator;
 
-public class MyGdxGame implements Screen {
+public class MiniGameGoOutside implements Screen {
 
+    private theConfining game;
 
-   private B2B game;
-
-    public MyGdxGame(B2B game) {
+    public MiniGameGoOutside(theConfining game) {
         this.game = game;
     }
 
-
-
-
+    private OrthographicCamera camera;
+    private SpriteBatch batch;
     private Texture background;
     private Texture playerImage;
     private Texture jojo;
@@ -41,7 +38,7 @@ public class MyGdxGame implements Screen {
     private Vector3 touchPos;
 
     private long dropRate;
-
+    int counter = 0;
     private Sound sound;
     private Music music;
     private boolean kill;
@@ -52,7 +49,9 @@ public class MyGdxGame implements Screen {
 
     public void create() {
 
-
+        batch = new SpriteBatch();
+        camera = new OrthographicCamera();
+        camera.setToOrtho(false, 800, 480);
         background = new Texture("minigame1/background.jpg");
         playerImage = new Texture("minigame1/flip2.png");
 
@@ -64,11 +63,11 @@ public class MyGdxGame implements Screen {
 
         touchPos = new Vector3();
 
-		sound = Gdx.audio.newSound(Gdx.files.internal("minigame1/sound.mp3"));
-		music = Gdx.audio.newMusic(Gdx.files.internal("minigame1/music.mp3"));
-		music.setLooping(true);
+        sound = Gdx.audio.newSound(Gdx.files.internal("minigame1/sound.mp3"));
+        music = Gdx.audio.newMusic(Gdx.files.internal("minigame1/music.mp3"));
+        music.setLooping(true);
 
-		music.setVolume(0.1f);
+        music.setVolume(0.1f);
 
 
         jojoDrops = new Array<Rectangle>();
@@ -117,7 +116,7 @@ public class MyGdxGame implements Screen {
     @Override
     public void render(float delta) {
 
-
+        camera.update();
         moveDrops(ricardoDrops);
         moveDrops(jojoDrops);
         moveDrops(ritaDrops);
@@ -136,8 +135,8 @@ public class MyGdxGame implements Screen {
         rita.dispose();
         ricardo.dispose();
         soraia.dispose();
-		sound.dispose();
-		music.dispose();
+        sound.dispose();
+        music.dispose();
 
     }
 
@@ -146,29 +145,28 @@ public class MyGdxGame implements Screen {
         int counter = 0;
 
 
+        batch.begin();
 
-        game.getBatch().begin();
-
-        game.getBatch().draw(background, 0, 0,1920,1136);
-        game.getBatch().draw(playerImage, player.x, player.y);
+        batch.draw(background, 0, 0, 1920, 1136);
+        batch.draw(playerImage, player.x, player.y);
 
         for (Rectangle drop : ritaDrops) {
-            game.getBatch().draw(soraia, drop.x, drop.y);
+            batch.draw(soraia, drop.x, drop.y);
         }
 
         for (Rectangle drop : jojoDrops) {
-            game.getBatch().draw(jojo, drop.x, drop.y);
+            batch.draw(jojo, drop.x, drop.y);
         }
 
         for (Rectangle drop : soraiaDrops) {
-            game.getBatch().draw(rita, drop.x, drop.y);
+            batch.draw(rita, drop.x, drop.y);
         }
 
         for (Rectangle drop : ricardoDrops) {
-            game.getBatch().draw(ricardo, drop.x, drop.y);
+            batch.draw(ricardo, drop.x, drop.y);
         }
 
-        game.getBatch().end();
+        batch.end();
 
     }
 
@@ -181,7 +179,6 @@ public class MyGdxGame implements Screen {
         jojo.y = (int) (Math.random() * 400);
         jojo.width = 34;
         jojo.height = 34;
-
 
 
         switch (random) {
@@ -215,8 +212,14 @@ public class MyGdxGame implements Screen {
 
             if (drop.overlaps(player) && kill) {
 
-				sound.play();
+                    counter ++;
+                if(counter == 3){
+                    game.setScreen(new Background(game));
+                }
+                System.out.println(counter);
+                sound.play();
                 iterator.remove();
+
             }
         }
         if (TimeUtils.nanoTime() - dropRate > 1000000000) {
@@ -228,7 +231,7 @@ public class MyGdxGame implements Screen {
 
         if (Gdx.input.isTouched()) {
             touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-
+            camera.unproject(touchPos);
             player.x = touchPos.x - 25;
             player.y = touchPos.y;
         }

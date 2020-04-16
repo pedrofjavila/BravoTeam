@@ -2,14 +2,14 @@ package org.academiadecodigo.apiores.bravoteam.Intro.Screens;
 
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.Texture;
-import org.academiadecodigo.apiores.bravoteam.Intro.B2B;
+import org.academiadecodigo.apiores.bravoteam.Intro.theConfining;
 
 
 public class Background implements Screen {
 
-    private B2B game;
+    private theConfining game;
 
-    public Background(B2B game) {
+    public Background(theConfining game) {
         this.game = game;
     }
 
@@ -18,9 +18,13 @@ public class Background implements Screen {
         Gdx.input.setInputProcessor(new InputAdapter(){
             @Override
             public boolean keyDown(int keyCode){
+                MiniGameGoOutside miniGameGoOutside = new MiniGameGoOutside(game);
                 if(keyCode == Input.Keys.T){
-                    game.setScreen(new MyGdxGame(game));
+                    miniGameGoOutside.create();
+                    game.setScreen(miniGameGoOutside);
+
                 }
+
 
                 return true;
             }

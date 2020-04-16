@@ -5,13 +5,13 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
-import org.academiadecodigo.apiores.bravoteam.Intro.B2B;
+import org.academiadecodigo.apiores.bravoteam.Intro.theConfining;
 
 public class Mainmenu implements Screen {
 
-    private B2B game;
+    private theConfining game;
 
-    public Mainmenu(B2B game) {
+    public Mainmenu(theConfining game) {
         this.game = game;
     }
         @Override

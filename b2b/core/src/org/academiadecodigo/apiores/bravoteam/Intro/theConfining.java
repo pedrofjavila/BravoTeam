@@ -4,14 +4,14 @@ import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import org.academiadecodigo.apiores.bravoteam.Intro.Screens.Intro;
+
 import org.academiadecodigo.apiores.bravoteam.Intro.Screens.Mainmenu;
-import org.academiadecodigo.apiores.bravoteam.Intro.Screens.foundWater;
 
 
-public class B2B extends Game {
 
+public class theConfining extends Game {
 
+    private Player player = new Player();
     private SpriteBatch batch;
     private ShapeRenderer shapeRenderer;
     private BitmapFont font;
@@ -58,7 +58,7 @@ public class B2B extends Game {
     //private Texture background4;
     //private Texture playerImage;
     //private Texture drop;
-   // MyGdxGame myGdxGame;
+   // MiniGameGoOutside myGdxGame;
 
     // private Rectangle player;
     //private Stage stage;
@@ -107,7 +107,7 @@ public class B2B extends Game {
         bg_music.setLooping(true);
         bg_music.setVolume(0.10f);
         bg_music.play();
-        myGdxGame = new MyGdxGame(getBatch(), getCamera());
+        myGdxGame = new MiniGameGoOutside(getBatch(), getCamera());
         myGdxGame.create();
 
     }
@@ -171,7 +171,7 @@ public class B2B extends Game {
         if (Gdx.input.isKeyPressed(Input.Keys.T)) {
             game = true;
             bg_music.stop();
-           this.setScreen(new MyGdxGame(getBatch(),getCamera()));
+           this.setScreen(new MiniGameGoOutside(getBatch(),getCamera()));
 
 
 
@@ -359,7 +359,7 @@ public class B2B extends Game {
         return drop;
     }
 
-    public MyGdxGame getMyGdxGame() {
+    public MiniGameGoOutside getMyGdxGame() {
         return myGdxGame;
     }
 

@@ -5,9 +5,9 @@ import com.badlogic.gdx.InputProcessor;
 
 public class KeyboardProcessor implements InputProcessor {
 
-    private B2B b;
+    private theConfining b;
 
-    public KeyboardProcessor(B2B b) {
+    public KeyboardProcessor(theConfining b) {
         this.b = b;
     }
 

@@ -43,7 +43,7 @@ j  com.badlogic.gdx.utils.BufferUtils.disposeUnsafeByteBuffer(Ljava/nio/ByteBuff
 j  com.badlogic.gdx.graphics.glutils.VertexArray.dispose()V+4
 j  com.badlogic.gdx.graphics.Mesh.dispose()V+38
 j  com.badlogic.gdx.graphics.g2d.SpriteBatch.dispose()V+4
-j  org.academiadecodigo.apiores.bravoteam.Intro.B2B.dispose()V+4
+j  org.academiadecodigo.apiores.bravoteam.Intro.theConfining.dispose()V+4
 j  com.badlogic.gdx.backends.lwjgl.LwjglApplication.mainLoop()V+918
 j  com.badlogic.gdx.backends.lwjgl.LwjglApplication$1.run()V+27
 v  ~StubRoutines::call_stub

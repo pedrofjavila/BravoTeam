@@ -2,7 +2,7 @@ package org.academiadecodigo.apiores.bravoteam.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import org.academiadecodigo.apiores.bravoteam.Intro.B2B;
+import org.academiadecodigo.apiores.bravoteam.Intro.theConfining;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {
@@ -12,6 +12,6 @@ public class DesktopLauncher {
 		config.fullscreen = false;
 		config.title = "The Confining";
 
-		new LwjglApplication(new B2B(), config);
+		new LwjglApplication(new theConfining(), config);
 	}
 }
