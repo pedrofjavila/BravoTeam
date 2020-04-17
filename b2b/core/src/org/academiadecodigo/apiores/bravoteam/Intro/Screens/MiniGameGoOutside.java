@@ -62,8 +62,8 @@ public class MiniGameGoOutside implements Screen {
         batch = new SpriteBatch();
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 1920, 1136);
-        background = new Texture("itens/pixelRoad.png");
-        playerImage = new Texture("itens/backpack_PNG6350.png");
+        background = new Texture("Items/pixelRoad.png");
+        playerImage = new Texture("Items/backpack_PNG6350.png");
 
         player = new Rectangle();
         player.x = 0;
@@ -76,28 +76,28 @@ public class MiniGameGoOutside implements Screen {
 
         foodDrops = new Array<Rectangle>();
 
-        food = new Texture("itens/food.png");
+        food = new Texture("Items/food.png");
         foodDrops = new Array<Rectangle>();
 
-        water = new Texture("itens/bottle2.png");
+        water = new Texture("Items/bottle2.png");
         waterDrops = new Array<Rectangle>();
 
-        sanitizer = new Texture("itens/alcool.png");
+        sanitizer = new Texture("Items/alcool.png");
         sanitizerDrops = new Array<Rectangle>();
 
-        radio = new Texture("itens/radiopix.png");
+        radio = new Texture("Items/radiopix.png");
         radioDrops = new Array<Rectangle>();
 
-        flashlight = new Texture("itens/flashlightpix.png");
+        flashlight = new Texture("Items/flashlightpix.png");
         flashlightDrops = new Array<Rectangle>();
 
-        baseball = new Texture("itens/baseballbat.png");
+        baseball = new Texture("Items/baseballbat.png");
         baseballDrops = new Array<Rectangle>();
 
-        guitar = new Texture("itens/accguitar.png");
+        guitar = new Texture("Items/accguitar.png");
         guitarDrops = new Array<Rectangle>();
 
-        virus = new Texture("itens/virus_PNG53.png");
+        virus = new Texture("Items/virus_PNG53.png");
         virusDrops = new Array<Rectangle>();
 
         spawnDrops();

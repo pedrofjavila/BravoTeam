@@ -98,7 +98,7 @@ public class Background implements Screen {
     @Override
     public void render(float delta) {
         game.getBatch().begin();
-        game.getBatch().draw(new Texture("Images/backgrd.jpg"),0f,0f,1920,1136);
+        game.getBatch().draw(new Texture("Images/background.jpg"),0f,0f,1920,1136);
         game.getBatch().end();
         bg_music.play();
        /* if (isDpressed){

@@ -205,8 +205,8 @@ public class theConfining extends Game {
             batch.begin();
 
             background = new Texture("goingOutsideTemp.png");
-            player1.getInventory().add(itemFactory.createItem(itens.WATER));
-            player1.getInventory().add(itemFactory.createItem(itens.FOOD));
+            player1.getInventory().add(itemFactory.createItem(Items.WATER));
+            player1.getInventory().add(itemFactory.createItem(Items.FOOD));
             batch.draw(background, 0, 0, 1920, 1136);
             player1.setWaters(player1.getWaters() + 1);
             player1.setFood(player1.getFood() + 1);
@@ -225,7 +225,7 @@ public class theConfining extends Game {
 
             batch.begin();
             background = new Texture("goingOutsideTemp.png");
-            player1.getInventory().add(itemFactory.createItem(itens.GUITAR));
+            player1.getInventory().add(itemFactory.createItem(Items.GUITAR));
 
             batch.draw(background, 0, 0, 1920, 1136);
 
@@ -241,7 +241,7 @@ public class theConfining extends Game {
             batch.begin();
 
             background = new Texture("goingOutsideTemp.png");
-            player1.getInventory().add(itemFactory.createItem(itens.SANITIZER));
+            player1.getInventory().add(itemFactory.createItem(Items.SANITIZER));
 
             batch.draw(background, 0, 0, 1920, 1136);
             player1.setSanity(player1.getSanity() - 10);

@@ -38,7 +38,7 @@ public class Mainmenu implements Screen {
     @Override
     public void render(float delta) {
         game.getBatch().begin();
-        game.getBatch().draw(new Texture("Images/menuImage7.png"),0,0,1920,1136);
+        game.getBatch().draw(new Texture("Images/introMenu.png"),0,0,1920,1136);
         game.getBatch().end();
         mainmenu_music.play();
    }
