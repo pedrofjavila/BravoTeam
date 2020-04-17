@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 import org.academiadecodigo.apiores.bravoteam.Intro.Screens.Diary.DiaryText;
 import org.academiadecodigo.apiores.bravoteam.Intro.Screens.Mainmenu;
-
+import org.academiadecodigo.apiores.bravoteam.Intro.Screens.Rules.Rules;
 
 
 public class theConfining extends Game {
@@ -21,7 +21,7 @@ public class theConfining extends Game {
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
         font = new BitmapFont();
-        setScreen(new Mainmenu(this));
+        setScreen(new Rules(this));
     }
 
     @Override

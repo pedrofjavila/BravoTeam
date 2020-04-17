@@ -30,9 +30,13 @@ public class Background implements Screen {
     private Boolean isDpressed = false;
     private DiaryText diary;
     private Music bg_music;
+
+
+
     public Background(theConfining game) {
         this.game = game;
         player = game.getPlayer();
+
      //   assetManager = new AssetManager();
     }
 
@@ -91,7 +95,7 @@ public class Background implements Screen {
 
         bg_music = Gdx.audio.newMusic(Gdx.files.internal("Music/background_music.mp3"));
         bg_music.setLooping(true);
-        bg_music.setVolume(0.50f);
+        bg_music.setVolume(0.10f);
     }
 
 
