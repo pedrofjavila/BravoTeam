@@ -45,45 +45,29 @@ public class miniGame3 implements Screen {
     private boolean kill;
     private Array<Rectangle> jojoDrops;
     private Array<Rectangle> ritaDrops;
-    private Array<Rectangle> soraiaDrops;
-    private Array<Rectangle> ricardoDrops;
+ ;
 
     public void create() {
 
-        batch = new SpriteBatch();
+        batch = game.getBatch();
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, 800, 480);
-        background = new Texture("minigame1/background.jpg");
-        playerImage = new Texture("minigame1/flip2.png");
+        background = new Texture("itens/relaxingRoadpixel.png");
+        playerImage = new Texture("itens/open-person-png-top-view-2000_2022.png");
 
         player = new Rectangle();
-        player.x = 0;
+        player.x = background.getWidth()/2;
         player.y = 0;
         player.width = 50;
         player.height = 150;
 
-        touchPos = new Vector3();
-
-        sound = Gdx.audio.newSound(Gdx.files.internal("minigame1/sound.mp3"));
-        music = Gdx.audio.newMusic(Gdx.files.internal("minigame1/music.mp3"));
-        music.setLooping(true);
-
-        music.setVolume(0.1f);
-
 
         jojoDrops = new Array<Rectangle>();
 
-        jojo = new Texture("minigame1/jojo.png");
+        jojo = new Texture("itens/227-2273484_bard-halfling-roll20-token-bard.png");
         jojoDrops = new Array<Rectangle>();
 
-        rita = new Texture("minigame1/rita.png");
+        rita = new Texture("itens/227-2273484_bard-halfling-roll20-token-bard.png");
         ritaDrops = new Array<Rectangle>();
-
-        soraia = new Texture("minigame1/soraia.png");
-        soraiaDrops = new Array<Rectangle>();
-
-        ricardo = new Texture("minigame1/ricardo.png");
-        ricardoDrops = new Array<Rectangle>();
 
         spawnDrops();
     }
@@ -118,10 +102,8 @@ public class miniGame3 implements Screen {
     public void render(float delta) {
 
         camera.update();
-        moveDrops(ricardoDrops);
         moveDrops(jojoDrops);
         moveDrops(ritaDrops);
-        moveDrops(soraiaDrops);
         createImages();
         userInputs();
 
@@ -149,22 +131,14 @@ public class miniGame3 implements Screen {
         batch.begin();
 
         batch.draw(background, 0, 0, 1920, 1136);
-        batch.draw(playerImage, player.x, player.y);
+        batch.draw(playerImage, player.x, player.y,50,50);
 
         for (Rectangle drop : ritaDrops) {
-            batch.draw(soraia, drop.x, drop.y);
+            batch.draw(rita, drop.x, drop.y,50,50);
         }
 
         for (Rectangle drop : jojoDrops) {
-            batch.draw(jojo, drop.x, drop.y);
-        }
-
-        for (Rectangle drop : soraiaDrops) {
-            batch.draw(rita, drop.x, drop.y);
-        }
-
-        for (Rectangle drop : ricardoDrops) {
-            batch.draw(ricardo, drop.x, drop.y);
+            batch.draw(jojo, drop.x, drop.y,50,50);
         }
 
         batch.end();
@@ -176,7 +150,7 @@ public class miniGame3 implements Screen {
 
         Rectangle jojo;
         jojo = new Rectangle();
-        jojo.x = 972;
+        jojo.x = 1136;
         jojo.y = (int) (Math.random() * 400);
         jojo.width = 34;
         jojo.height = 34;
@@ -189,11 +163,6 @@ public class miniGame3 implements Screen {
             case 1:
                 ritaDrops.add(jojo);
                 break;
-            case 2:
-                ricardoDrops.add(jojo);
-                break;
-            default:
-                soraiaDrops.add(jojo);
         }
         dropRate = TimeUtils.nanoTime();
     }
@@ -230,32 +199,6 @@ public class miniGame3 implements Screen {
 
     private void userInputs() {
 
-        if (Gdx.input.isTouched()) {
-            touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-            camera.unproject(touchPos);
-            player.x = touchPos.x - 25;
-            player.y = touchPos.y;
-        }
-
-        if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
-
-            playerImage = new Texture("minigame1/flip3.png");
-            kill = true;
-        }
-
-        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
-
-            double delay = 0.2; // seconds
-
-            Timer.schedule(new Timer.Task() {
-                @Override
-                public void run() {
-                    playerImage = new Texture("minigame1/flip2.png");
-                    kill = false;
-                }
-            }, (float) delay);
-        }
-
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             player.x -= 400 * Gdx.graphics.getDeltaTime();
         }
@@ -276,16 +219,16 @@ public class miniGame3 implements Screen {
             player.x = 0;
         }
 
-        if (player.x > 750) {
-            player.x = 750;
+        if (player.x > 1850) {
+            player.x = 1850;
         }
 
         if (player.y < 0) {
             player.y = 0;
         }
 
-        if (player.y > 750) {
-            player.y = 750;
+        if (player.y > 1000) {
+            player.y = 1000;
         }
     }
 

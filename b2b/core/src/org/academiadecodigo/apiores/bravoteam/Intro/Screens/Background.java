@@ -23,9 +23,14 @@ public class Background implements Screen {
             @Override
             public boolean keyDown(int keyCode){
                 MiniGameGoOutside miniGameGoOutside = new MiniGameGoOutside(game);
+                miniGame3 miniGame3 = new miniGame3(game);
                 if(keyCode == Input.Keys.NUM_1){
                     miniGameGoOutside.create();
                     game.setScreen(miniGameGoOutside);
+
+                }if(keyCode == Input.Keys.NUM_2){
+                           miniGame3.create();
+                           game.setScreen(miniGame3);
 
                 }if(keyCode == Input.Keys.E){
                     Iterator<Item> invent = game.getPlayer().getInventory().iterator();
