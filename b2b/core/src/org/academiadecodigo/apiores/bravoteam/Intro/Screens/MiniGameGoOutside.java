@@ -325,7 +325,7 @@ public class MiniGameGoOutside implements Screen {
         while (sanitizer.hasNext()) {
 
             Rectangle drop = sanitizer.next();
-            drop.y -= 400 * Gdx.graphics.getDeltaTime();
+            drop.y -= 500 * Gdx.graphics.getDeltaTime();
 
             if (drop.y + 64 < 0) {
                 sanitizer.remove();
@@ -350,7 +350,7 @@ public class MiniGameGoOutside implements Screen {
         while (baseball.hasNext()) {
 
             Rectangle drop = baseball.next();
-            drop.y -= 400 * Gdx.graphics.getDeltaTime();
+            drop.y -= 500 * Gdx.graphics.getDeltaTime();
 
             if (drop.y + 64 < 0) {
                 baseball.remove();
@@ -375,7 +375,7 @@ public class MiniGameGoOutside implements Screen {
         while (flashlight.hasNext()) {
 
             Rectangle drop = flashlight.next();
-            drop.y -= 400 * Gdx.graphics.getDeltaTime();
+            drop.y -= 500 * Gdx.graphics.getDeltaTime();
 
             if (drop.y + 64 < 0) {
                 flashlight.remove();
@@ -400,7 +400,7 @@ public class MiniGameGoOutside implements Screen {
         while (radio.hasNext()) {
 
             Rectangle drop = radio.next();
-            drop.y -= 400 * Gdx.graphics.getDeltaTime();
+            drop.y -= 500 * Gdx.graphics.getDeltaTime();
 
             if (drop.y + 64 < 0) {
                 radio.remove();
@@ -425,7 +425,7 @@ public class MiniGameGoOutside implements Screen {
         while (guitar.hasNext()) {
 
             Rectangle drop = guitar.next();
-            drop.y -= 400 * Gdx.graphics.getDeltaTime();
+            drop.y -= 500 * Gdx.graphics.getDeltaTime();
 
             if (drop.y + 64 < 0) {
                 guitar.remove();

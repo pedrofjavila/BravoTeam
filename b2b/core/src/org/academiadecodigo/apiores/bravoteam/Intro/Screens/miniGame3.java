@@ -178,7 +178,7 @@ public class miniGame3 implements Screen {
         while (iterator.hasNext()) {
 
             Rectangle drop = iterator.next();
-            drop.x -= 700 * Gdx.graphics.getDeltaTime();
+            drop.x -= 900 * Gdx.graphics.getDeltaTime();
 
             if (drop.x + 64 < 0) {
                 iterator.remove();
