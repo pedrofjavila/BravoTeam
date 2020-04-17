@@ -49,8 +49,6 @@ public class Background implements Screen {
                         }
                     }
                 }
-
-
                 return true;
             }
         });

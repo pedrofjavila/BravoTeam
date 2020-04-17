@@ -15,20 +15,20 @@ public class Mainmenu implements Screen {
         this.game = game;
     }
         @Override
-        public void show() {
-            Gdx.input.setInputProcessor(new InputAdapter(){
-                @Override
-                public boolean keyDown(int keyCode){
-                    if(keyCode == Input.Keys.Y){
-                        game.setScreen(new Background(game));
-                    }
-                    if(keyCode == Input.Keys.ESCAPE){
-                        System.exit(1);
-                    }
-                    return true;
+    public void show() {
+        Gdx.input.setInputProcessor(new InputAdapter(){
+            @Override
+            public boolean keyDown(int keyCode){
+                if(keyCode == Input.Keys.Y){
+                    game.setScreen(new Background(game));
                 }
-            });
-        }
+                if(keyCode == Input.Keys.ESCAPE){
+                    System.exit(1);
+                }
+                return true;
+            }
+        });
+    }
 
     @Override
     public void render(float delta) {
