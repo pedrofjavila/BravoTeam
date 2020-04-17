@@ -2,7 +2,11 @@ package org.academiadecodigo.apiores.bravoteam.Intro.Screens;
 
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.Texture;
+import org.academiadecodigo.apiores.bravoteam.Intro.Factory.itens;
+import org.academiadecodigo.apiores.bravoteam.Intro.Item.Item;
 import org.academiadecodigo.apiores.bravoteam.Intro.theConfining;
+
+import java.util.Iterator;
 
 
 public class Background implements Screen {
@@ -19,10 +23,26 @@ public class Background implements Screen {
             @Override
             public boolean keyDown(int keyCode){
                 MiniGameGoOutside miniGameGoOutside = new MiniGameGoOutside(game);
-                if(keyCode == Input.Keys.T){
+                if(keyCode == Input.Keys.NUM_1){
                     miniGameGoOutside.create();
                     game.setScreen(miniGameGoOutside);
 
+                }if(keyCode == Input.Keys.E){
+                    Iterator<Item> invent = game.getPlayer().getInventory().iterator();
+                    while(invent.hasNext()) {
+                        if (invent.next().equals(itens.FOOD)) {
+                            game.getPlayer().setHunger(game.getPlayer().getHunger() + 25);
+                            invent.remove();
+                        }
+                    }
+                }if(keyCode == Input.Keys.Q){
+                    Iterator<Item> invent = game.getPlayer().getInventory().iterator();
+                    while (invent.hasNext()) {
+                        if (invent.next().equals(itens.WATER)) {
+                            game.getPlayer().setThirst(game.getPlayer().getThirst() + 25);
+                            invent.remove();
+                        }
+                    }
                 }
 
 

@@ -35,7 +35,6 @@ public class miniGame3 implements Screen {
     private Texture rita;
     private Texture soraia;
     private Texture ricardo;
-
     private Rectangle player;
     private Vector3 touchPos;
 

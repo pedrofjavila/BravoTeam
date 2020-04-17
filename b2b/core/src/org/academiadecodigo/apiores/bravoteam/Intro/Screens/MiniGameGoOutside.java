@@ -13,6 +13,8 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.Timer;
+import org.academiadecodigo.apiores.bravoteam.Intro.Factory.itemFactory;
+import org.academiadecodigo.apiores.bravoteam.Intro.Factory.itens;
 import org.academiadecodigo.apiores.bravoteam.Intro.theConfining;
 
 import java.util.Iterator;
@@ -29,10 +31,14 @@ public class MiniGameGoOutside implements Screen {
     private SpriteBatch batch;
     private Texture background;
     private Texture playerImage;
-    private Texture jojo;
-    private Texture rita;
-    private Texture soraia;
-    private Texture ricardo;
+    private Texture food;
+    private Texture water;
+    private Texture sanitizer;
+    private Texture baseball;
+    private Texture guitar;
+    private Texture flashlight;
+    private Texture radio;
+    private Texture virus;
 
     private Rectangle player;
     private Vector3 touchPos;
@@ -42,18 +48,22 @@ public class MiniGameGoOutside implements Screen {
     private Sound sound;
     private Music music;
     private boolean kill;
-    private Array<Rectangle> jojoDrops;
-    private Array<Rectangle> ritaDrops;
-    private Array<Rectangle> soraiaDrops;
-    private Array<Rectangle> ricardoDrops;
+    private Array<Rectangle> foodDrops;
+    private Array<Rectangle> waterDrops;
+    private Array<Rectangle> sanitizerDrops;
+    private Array<Rectangle> baseballDrops;
+    private Array<Rectangle> radioDrops;
+    private Array<Rectangle> flashlightDrops;
+    private Array<Rectangle> virusDrops;
+    private Array<Rectangle> guitarDrops;
 
     public void create() {
 
         batch = new SpriteBatch();
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, 800, 480);
-        background = new Texture("minigame1/background.jpg");
-        playerImage = new Texture("minigame1/flip2.png");
+        camera.setToOrtho(false, 1920, 1136);
+        background = new Texture("itens/pixelRoad.png");
+        playerImage = new Texture("itens/backpack_PNG6350.png");
 
         player = new Rectangle();
         player.x = 0;
@@ -70,19 +80,31 @@ public class MiniGameGoOutside implements Screen {
         music.setVolume(0.1f);
 
 
-        jojoDrops = new Array<Rectangle>();
+        foodDrops = new Array<Rectangle>();
 
-        jojo = new Texture("minigame1/jojo.png");
-        jojoDrops = new Array<Rectangle>();
+        food = new Texture("itens/food.png");
+        foodDrops = new Array<Rectangle>();
 
-        rita = new Texture("minigame1/rita.png");
-        ritaDrops = new Array<Rectangle>();
+        water = new Texture("itens/bottle2.png");
+        waterDrops = new Array<Rectangle>();
 
-        soraia = new Texture("minigame1/soraia.png");
-        soraiaDrops = new Array<Rectangle>();
+        sanitizer = new Texture("itens/alcool.png");
+        sanitizerDrops = new Array<Rectangle>();
 
-        ricardo = new Texture("minigame1/ricardo.png");
-        ricardoDrops = new Array<Rectangle>();
+        radio = new Texture("itens/radiopix.png");
+        radioDrops = new Array<Rectangle>();
+
+        flashlight = new Texture("itens/flashlightpix.png");
+        flashlightDrops = new Array<Rectangle>();
+
+        baseball = new Texture("itens/baseballbat.png");
+        baseballDrops = new Array<Rectangle>();
+
+        guitar = new Texture("itens/accguitar.png");
+        guitarDrops = new Array<Rectangle>();
+
+        virus = new Texture("itens/virus_PNG53.png");
+        virusDrops = new Array<Rectangle>();
 
         spawnDrops();
     }
@@ -117,10 +139,7 @@ public class MiniGameGoOutside implements Screen {
     public void render(float delta) {
 
         camera.update();
-        moveDrops(ricardoDrops);
-        moveDrops(jojoDrops);
-        moveDrops(ritaDrops);
-        moveDrops(soraiaDrops);
+        moveDrops(foodDrops,waterDrops,sanitizerDrops,flashlightDrops,baseballDrops,guitarDrops,radioDrops,virusDrops);
         createImages();
         userInputs();
 
@@ -128,16 +147,16 @@ public class MiniGameGoOutside implements Screen {
 
     @Override
     public void dispose() {
-
         background.dispose();
         playerImage.dispose();
-        jojo.dispose();
-        rita.dispose();
-        ricardo.dispose();
-        soraia.dispose();
+        virus.dispose();
+        flashlight.dispose();
+        food.dispose();
+        water.dispose();
+        baseball.dispose();
+        radio.dispose();
         sound.dispose();
         music.dispose();
-
     }
 
     private void createImages() {
@@ -148,83 +167,289 @@ public class MiniGameGoOutside implements Screen {
         batch.begin();
 
         batch.draw(background, 0, 0, 1920, 1136);
-        batch.draw(playerImage, player.x, player.y);
+        batch.draw(playerImage, player.x, player.y,100,100);
 
-        for (Rectangle drop : ritaDrops) {
-            batch.draw(soraia, drop.x, drop.y);
+        for (Rectangle drop : radioDrops) {
+            batch.draw(radio, drop.x, drop.y, 50, 50);
         }
 
-        for (Rectangle drop : jojoDrops) {
-            batch.draw(jojo, drop.x, drop.y);
+        for (Rectangle drop : foodDrops) {
+            batch.draw(food, drop.x, drop.y, 50, 50);
         }
 
-        for (Rectangle drop : soraiaDrops) {
-            batch.draw(rita, drop.x, drop.y);
+        for (Rectangle drop : waterDrops) {
+            batch.draw(water, drop.x, drop.y, 50, 50);
         }
 
-        for (Rectangle drop : ricardoDrops) {
-            batch.draw(ricardo, drop.x, drop.y);
+        for (Rectangle drop : flashlightDrops) {
+            batch.draw(flashlight, drop.x, drop.y, 50, 50);
         }
 
+        for (Rectangle drop : baseballDrops) {
+            batch.draw(baseball, drop.x, drop.y, 50, 50);
+        }
+
+        for (Rectangle drop : sanitizerDrops) {
+            batch.draw(sanitizer, drop.x, drop.y, 50, 50);
+        }
+
+        for (Rectangle drop : virusDrops) {
+            batch.draw(virus, drop.x, drop.y, 50, 50);
+        }
+        for (Rectangle drop : guitarDrops) {
+            batch.draw(guitar, drop.x, drop.y, 50, 50);
+        }
         batch.end();
 
     }
 
     private void spawnDrops() {
-        int random = (int) (Math.random() * 4);
+        int random = (int) (Math.random() * 100);
 
         Rectangle jojo;
         jojo = new Rectangle();
-        jojo.x = 972;
-        jojo.y = (int) (Math.random() * 400);
+        jojo.x = (int) (Math.random() * 1920);
+        jojo.y = 1500;
         jojo.width = 34;
         jojo.height = 34;
 
+        if(random>10){
+            virusDrops.add(jojo);
+        }
 
         switch (random) {
             case 0:
-                jojoDrops.add(jojo);
+                waterDrops.add(jojo);
                 break;
             case 1:
-                ritaDrops.add(jojo);
+                foodDrops.add(jojo);
                 break;
             case 2:
-                ricardoDrops.add(jojo);
+                flashlightDrops.add(jojo);
                 break;
-            default:
-                soraiaDrops.add(jojo);
+            case 3:
+                baseballDrops.add(jojo);
+                break;
+            case 4:
+                radioDrops.add(jojo);
+                break;
+            case 5:
+                sanitizerDrops.add(jojo);
         }
         dropRate = TimeUtils.nanoTime();
     }
 
-    private void moveDrops(Array<Rectangle> drops) {
+    private void moveDrops(Array<Rectangle> drops, Array<Rectangle> drops2, Array<Rectangle> drops3, Array<Rectangle> drops4,
+                           Array<Rectangle> drops5, Array<Rectangle> drops6,Array<Rectangle> drops7,Array<Rectangle> drops8) {
 
-        Iterator<Rectangle> iterator = drops.iterator();
 
-        while (iterator.hasNext()) {
+        Iterator<Rectangle> food = drops.iterator();
+        Iterator<Rectangle> water = drops2.iterator();
+        Iterator<Rectangle> sanitizer = drops3.iterator();
+        Iterator<Rectangle> flashlight = drops4.iterator();
+        Iterator<Rectangle> baseball = drops5.iterator();
+        Iterator<Rectangle> guitar =drops6.iterator();
+        Iterator<Rectangle> radio =drops7.iterator();
+        Iterator<Rectangle> virus =drops8.iterator();
 
-            Rectangle drop = iterator.next();
-            drop.x -= 200 * Gdx.graphics.getDeltaTime();
 
-            if (drop.x + 64 < 0) {
-                iterator.remove();
+        while (virus.hasNext()) {
+
+            Rectangle drop = virus.next();
+            drop.y -= 100 * Gdx.graphics.getDeltaTime();
+
+            if (drop.y + 64 < 0) {
+                virus.remove();
             }
 
-            if (drop.overlaps(player) && kill) {
-
-                    counter ++;
-                if(counter == 3){
+            if (drop.overlaps(player)) {
+                game.getPlayer().setHealth(game.getPlayer().getHealth()-20);
+                game.getPlayer().setSanity(game.getPlayer().getSanity()-20);
+                counter++;
+                if (counter == 3) {
                     game.setScreen(new Background(game));
                 }
                 System.out.println(counter);
-                sound.play();
-                iterator.remove();
+                virus.remove();
 
             }
         }
+
+        while (food.hasNext()) {
+
+            Rectangle drop = food.next();
+            drop.y -= 100 * Gdx.graphics.getDeltaTime();
+
+            if (drop.y + 64 < 0) {
+                food.remove();
+            }
+
+            if (drop.overlaps(player)) {
+                game.getPlayer().setHunger(game.getPlayer().getHunger()-5);
+                game.getPlayer().setThirst(game.getPlayer().getThirst()-5);
+                game.getPlayer().setSanity(game.getPlayer().getSanity()-5);
+                game.getPlayer().getInventory().add(itemFactory.createItem(itens.FOOD));
+                counter++;
+                if (counter == 3) {
+                    game.setScreen(new Background(game));
+                }
+                System.out.println(counter);
+
+                food.remove();
+
+            }
+        }
+
+        while (water.hasNext()) {
+            int numb = (int) (Math.random()*100);
+            Rectangle drop = water.next();
+            drop.y -= 100 * Gdx.graphics.getDeltaTime();
+
+            if (drop.y + 64 < 0) {
+                water.remove();
+            }
+
+            if (drop.overlaps(player)) {
+                game.getPlayer().setHunger(game.getPlayer().getHunger()-5);
+                game.getPlayer().setThirst(game.getPlayer().getThirst()-5);
+                game.getPlayer().setSanity(game.getPlayer().getSanity()-5);
+                game.getPlayer().getInventory().add(itemFactory.createItem(itens.WATER));
+                counter++;
+                if (counter == 3) {
+                    game.setScreen(new Background(game));
+                }
+                System.out.println(counter);
+
+               water.remove();
+
+            }
+        }
+
+        while (sanitizer.hasNext()) {
+
+            Rectangle drop = sanitizer.next();
+            drop.y -= 100 * Gdx.graphics.getDeltaTime();
+
+            if (drop.y + 64 < 0) {
+                sanitizer.remove();
+            }
+
+            if (drop.overlaps(player)) {
+                game.getPlayer().setHunger(game.getPlayer().getHunger()-5);
+                game.getPlayer().setThirst(game.getPlayer().getThirst()-5);
+                game.getPlayer().setSanity(game.getPlayer().getSanity()-5);
+                game.getPlayer().getInventory().add(itemFactory.createItem(itens.SANITIZER));
+                counter++;
+                if (counter == 3) {
+                    game.setScreen(new Background(game));
+                }
+                System.out.println(counter);
+
+                sanitizer.remove();
+
+            }
+        }
+        while (baseball.hasNext()) {
+
+            Rectangle drop = baseball.next();
+            drop.y -= 100 * Gdx.graphics.getDeltaTime();
+
+            if (drop.y + 64 < 0) {
+                baseball.remove();
+            }
+
+            if (drop.overlaps(player)) {
+                game.getPlayer().setHunger(game.getPlayer().getHunger()-5);
+                game.getPlayer().setThirst(game.getPlayer().getThirst()-5);
+                game.getPlayer().setSanity(game.getPlayer().getSanity()-5);
+                game.getPlayer().getInventory().add(itemFactory.createItem(itens.BASEBALL_BAT));
+                counter++;
+                if (counter == 3) {
+                    game.setScreen(new Background(game));
+                }
+                System.out.println(counter);
+
+                baseball.remove();
+
+            }
+        }
+        while (flashlight.hasNext()) {
+
+            Rectangle drop = flashlight.next();
+            drop.y -= 100 * Gdx.graphics.getDeltaTime();
+
+            if (drop.y + 64 < 0) {
+                flashlight.remove();
+            }
+
+            if (drop.overlaps(player)) {
+                game.getPlayer().setHunger(game.getPlayer().getHunger()-5);
+                game.getPlayer().setThirst(game.getPlayer().getThirst()-5);
+                game.getPlayer().setSanity(game.getPlayer().getSanity()-5);
+                game.getPlayer().getInventory().add(itemFactory.createItem(itens.FLASHLIGHT));
+                counter++;
+                if (counter == 3) {
+                    game.setScreen(new Background(game));
+                }
+                System.out.println(counter);
+
+               flashlight.remove();
+
+            }
+        }
+        while (radio.hasNext()) {
+
+            Rectangle drop = radio.next();
+            drop.y -= 100 * Gdx.graphics.getDeltaTime();
+
+            if (drop.y + 64 < 0) {
+                radio.remove();
+            }
+
+            if (drop.overlaps(player)) {
+                game.getPlayer().setHunger(game.getPlayer().getHunger()-5);
+                game.getPlayer().setThirst(game.getPlayer().getThirst()-5);
+                game.getPlayer().setSanity(game.getPlayer().getSanity()-5);
+                game.getPlayer().getInventory().add(itemFactory.createItem(itens.RADIO));
+                counter++;
+                if (counter == 3) {
+                    game.setScreen(new Background(game));
+                }
+                System.out.println(counter);
+
+                radio.remove();
+
+            }
+        }
+        while (guitar.hasNext()) {
+
+            Rectangle drop = guitar.next();
+            drop.y -= 100 * Gdx.graphics.getDeltaTime();
+
+            if (drop.y + 64 < 0) {
+                guitar.remove();
+            }
+
+            if (drop.overlaps(player)) {
+                game.getPlayer().setHunger(game.getPlayer().getHunger()-5);
+                game.getPlayer().setThirst(game.getPlayer().getThirst()-5);
+                game.getPlayer().setSanity(game.getPlayer().getSanity()-5);
+                game.getPlayer().getInventory().add(itemFactory.createItem(itens.GUITAR));
+                counter++;
+                if (counter == 3) {
+                    game.setScreen(new Background(game));
+                }
+                System.out.println(counter);
+
+                guitar.remove();
+
+            }
+        }
+
         if (TimeUtils.nanoTime() - dropRate > 1000000000) {
             spawnDrops();
         }
+
     }
 
     private void userInputs() {
@@ -235,26 +460,6 @@ public class MiniGameGoOutside implements Screen {
             player.x = touchPos.x - 25;
             player.y = touchPos.y;
         }
-
-        if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
-
-            playerImage = new Texture("minigame1/flip3.png");
-            kill = true;
-        }
-
-        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
-
-            double delay = 0.2; // seconds
-
-            Timer.schedule(new Timer.Task() {
-                @Override
-                public void run() {
-                    playerImage = new Texture("minigame1/flip2.png");
-                    kill = false;
-                }
-            }, (float) delay);
-        }
-
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             player.x -= 400 * Gdx.graphics.getDeltaTime();
         }
@@ -275,24 +480,17 @@ public class MiniGameGoOutside implements Screen {
             player.x = 0;
         }
 
-        if (player.x > 750) {
-            player.x = 750;
+        if (player.x > 1900) {
+            player.x = 1900;
         }
 
         if (player.y < 0) {
             player.y = 0;
         }
 
-        if (player.y > 750) {
-            player.y = 750;
+        if (player.y > 20) {
+            player.y = 20;
         }
     }
 
-    public Sound getSound() {
-        return sound;
-    }
-
-    public Music getMusic() {
-        return music;
-    }
 }

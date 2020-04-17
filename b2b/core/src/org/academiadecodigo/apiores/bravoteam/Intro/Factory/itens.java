@@ -6,7 +6,9 @@ public enum itens {
     FOOD,
     BASEBALL_BAT,
     GUITAR,
-    SANITIZER;
+    SANITIZER,
+    RADIO,
+    FLASHLIGHT;
 
 
 

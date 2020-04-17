@@ -19,7 +19,10 @@ public class itemFactory {
                 return new baseballBat();
             case SANITIZER:
                 return new sanitizer();
-
+            case RADIO:
+                return new radio();
+            case FLASHLIGHT:
+                return new flashlight();
 
         }
         return null;

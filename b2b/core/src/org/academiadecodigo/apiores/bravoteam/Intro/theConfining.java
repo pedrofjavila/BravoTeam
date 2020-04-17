@@ -34,14 +34,11 @@ public class theConfining extends Game {
         return batch;
     }
 
-    public ShapeRenderer getShapeRenderer() {
-        return shapeRenderer;
+    public Player getPlayer() {
+        return player;
     }
 
-    public BitmapFont getFont() {
-        return font;
-    }
-//private boolean game = false;
+    //private boolean game = false;
 
 
     //private mainMenu menu;
