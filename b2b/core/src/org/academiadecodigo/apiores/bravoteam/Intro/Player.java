@@ -14,6 +14,7 @@ public class Player {
     private int dayCounter = 0;
     private int waters = 10;
     private int food = 10;
+
     private List<Item> Inventory = new LinkedList<>();
 
     public void setHealth(int health) {
@@ -71,6 +72,7 @@ public class Player {
     public void setFood(int food) {
         this.food = food;
     }
+
 
     public List<Item> getInventory() {
         return Inventory;

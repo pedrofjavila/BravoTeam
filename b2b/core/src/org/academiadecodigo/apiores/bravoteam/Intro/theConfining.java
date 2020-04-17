@@ -5,8 +5,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
+import org.academiadecodigo.apiores.bravoteam.Intro.Screens.Diary.DiaryText;
 import org.academiadecodigo.apiores.bravoteam.Intro.Screens.Mainmenu;
-
 
 
 public class theConfining extends Game {
@@ -15,12 +15,17 @@ public class theConfining extends Game {
     private SpriteBatch batch;
     private ShapeRenderer shapeRenderer;
     private BitmapFont font;
+
+
+
     @Override
     public void create() {
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
         font = new BitmapFont();
         setScreen(new Mainmenu(this));
+
+
     }
 
     @Override
@@ -41,7 +46,14 @@ public class theConfining extends Game {
     public BitmapFont getFont() {
         return font;
     }
-//private boolean game = false;
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    }
+
+    //private boolean game = false;
 
 
     //private mainMenu menu;
@@ -410,6 +422,5 @@ public class theConfining extends Game {
     public int getCounter() {
         return counter;
     }*/
-}
 
 

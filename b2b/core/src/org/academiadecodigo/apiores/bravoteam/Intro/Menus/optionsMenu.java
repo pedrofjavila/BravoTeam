@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class optionsMenu implements Screen {
 
     private SpriteBatch batch;
-    private Texture optionMenu = new Texture("optionsTemp.png");
+    private Texture optionMenu = new Texture("Images/optionsTemp.png");
     public optionsMenu (SpriteBatch batch){
         this.batch = batch;
     }
