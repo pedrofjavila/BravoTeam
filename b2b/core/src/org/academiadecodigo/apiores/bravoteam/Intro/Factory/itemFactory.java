@@ -31,7 +31,7 @@ public class itemFactory {
     }
 
     public static Item RandomcreateItem() {
-        int random = MathUtils.random(1, 7);
+        int random = (int)(Math.random()*7);
         switch (random) {
             case 1:
                 return new food();

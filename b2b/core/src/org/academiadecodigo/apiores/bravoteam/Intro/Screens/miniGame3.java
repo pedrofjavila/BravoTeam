@@ -51,8 +51,8 @@ public class miniGame3 implements Screen {
 
         batch = game.getBatch();
         camera = new OrthographicCamera();
-        background = new Texture("Itens/relaxingRoadpixel.png");
-        playerImage = new Texture("Itens/open-person-png-top-view-2000_2022.png");
+        background = new Texture("Items/relaxingRoadpixel.png");
+        playerImage = new Texture("Items/open-person-png-top-view-2000_2022.png");
 
         player = new Rectangle();
         player.x = 960;
@@ -63,10 +63,10 @@ public class miniGame3 implements Screen {
 
         jojoDrops = new Array<Rectangle>();
 
-        jojo = new Texture("Itens/227-2273484_bard-halfling-roll20-token-bard.png");
+        jojo = new Texture("Items/227-2273484_bard-halfling-roll20-token-bard.png");
         jojoDrops = new Array<Rectangle>();
 
-        rita = new Texture("Itens/227-2273484_bard-halfling-roll20-token-bard.png");
+        rita = new Texture("Items/227-2273484_bard-halfling-roll20-token-bard.png");
         ritaDrops = new Array<Rectangle>();
 
         spawnDrops();
@@ -102,6 +102,7 @@ public class miniGame3 implements Screen {
     public void render(float delta) {
         if(player.y>970){
             game.getPlayer().setSanity(game.getPlayer().getSanity()+30);
+            game.getPlayer().setDayCounter(game.getPlayer().getDayCounter()+1);
             game.setScreen(new Background(game));
         }
         camera.update();
@@ -177,7 +178,7 @@ public class miniGame3 implements Screen {
         while (iterator.hasNext()) {
 
             Rectangle drop = iterator.next();
-            drop.x -= 400 * Gdx.graphics.getDeltaTime();
+            drop.x -= 700 * Gdx.graphics.getDeltaTime();
 
             if (drop.x + 64 < 0) {
                 iterator.remove();
@@ -185,12 +186,12 @@ public class miniGame3 implements Screen {
 
             if (drop.overlaps(player)) {
                     game.getPlayer().setSanity(game.getPlayer().getSanity()- 30);
+                    game.getPlayer().setDayCounter(game.getPlayer().getDayCounter()+1);
                     game.setScreen(new Background(game));
-
 
             }
         }
-        if (TimeUtils.nanoTime() - dropRate > 1000000000) {
+        if (TimeUtils.nanoTime() - dropRate > 100000000) {
             spawnDrops();
         }
         if (TimeUtils.nanoTime() - dropRate > 1000000000) {

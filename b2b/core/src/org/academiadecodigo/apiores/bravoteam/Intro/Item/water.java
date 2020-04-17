@@ -1,9 +1,15 @@
 package org.academiadecodigo.apiores.bravoteam.Intro.Item;
 
 public class water implements Item {
-
+    private String string= "Bottle of Water";
     @Override
            public String toString() {
-            return "Bottle of Water";
+            return string;
+    }
+
+
+    @Override
+    public String getString() {
+        return string;
     }
 }

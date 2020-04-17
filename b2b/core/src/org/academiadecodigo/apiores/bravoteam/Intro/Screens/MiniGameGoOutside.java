@@ -250,7 +250,7 @@ public class MiniGameGoOutside implements Screen {
         while (virus.hasNext()) {
 
             Rectangle drop = virus.next();
-            drop.y -= 100 * Gdx.graphics.getDeltaTime();
+            drop.y -= 400 * Gdx.graphics.getDeltaTime();
 
             if (drop.y + 64 < 0) {
                 virus.remove();
@@ -262,6 +262,7 @@ public class MiniGameGoOutside implements Screen {
                 counter++;
                 if (counter == 3) {
                     game.setScreen(new Background(game));
+                    game.getPlayer().setDayCounter(game.getPlayer().getDayCounter()+1);
                 }
                 System.out.println(counter);
                 virus.remove();
@@ -272,7 +273,7 @@ public class MiniGameGoOutside implements Screen {
         while (food.hasNext()) {
 
             Rectangle drop = food.next();
-            drop.y -= 100 * Gdx.graphics.getDeltaTime();
+            drop.y -= 400 * Gdx.graphics.getDeltaTime();
 
             if (drop.y + 64 < 0) {
                 food.remove();
@@ -286,6 +287,7 @@ public class MiniGameGoOutside implements Screen {
                 counter++;
                 if (counter == 3) {
                     game.setScreen(new Background(game));
+                    game.getPlayer().setDayCounter(game.getPlayer().getDayCounter()+1);
                 }
                 System.out.println(counter);
 
@@ -297,7 +299,7 @@ public class MiniGameGoOutside implements Screen {
         while (water.hasNext()) {
             int numb = (int) (Math.random()*100);
             Rectangle drop = water.next();
-            drop.y -= 100 * Gdx.graphics.getDeltaTime();
+            drop.y -= 400 * Gdx.graphics.getDeltaTime();
 
             if (drop.y + 64 < 0) {
                 water.remove();
@@ -311,6 +313,7 @@ public class MiniGameGoOutside implements Screen {
                 counter++;
                 if (counter == 3) {
                     game.setScreen(new Background(game));
+                    game.getPlayer().setDayCounter(game.getPlayer().getDayCounter()+1);
                 }
                 System.out.println(counter);
 
@@ -322,7 +325,7 @@ public class MiniGameGoOutside implements Screen {
         while (sanitizer.hasNext()) {
 
             Rectangle drop = sanitizer.next();
-            drop.y -= 100 * Gdx.graphics.getDeltaTime();
+            drop.y -= 400 * Gdx.graphics.getDeltaTime();
 
             if (drop.y + 64 < 0) {
                 sanitizer.remove();
@@ -336,6 +339,7 @@ public class MiniGameGoOutside implements Screen {
                 counter++;
                 if (counter == 3) {
                     game.setScreen(new Background(game));
+                    game.getPlayer().setDayCounter(game.getPlayer().getDayCounter()+1);
                 }
                 System.out.println(counter);
 
@@ -346,7 +350,7 @@ public class MiniGameGoOutside implements Screen {
         while (baseball.hasNext()) {
 
             Rectangle drop = baseball.next();
-            drop.y -= 100 * Gdx.graphics.getDeltaTime();
+            drop.y -= 400 * Gdx.graphics.getDeltaTime();
 
             if (drop.y + 64 < 0) {
                 baseball.remove();
@@ -360,6 +364,7 @@ public class MiniGameGoOutside implements Screen {
                 counter++;
                 if (counter == 3) {
                     game.setScreen(new Background(game));
+                    game.getPlayer().setDayCounter(game.getPlayer().getDayCounter()+1);
                 }
                 System.out.println(counter);
 
@@ -370,7 +375,7 @@ public class MiniGameGoOutside implements Screen {
         while (flashlight.hasNext()) {
 
             Rectangle drop = flashlight.next();
-            drop.y -= 100 * Gdx.graphics.getDeltaTime();
+            drop.y -= 400 * Gdx.graphics.getDeltaTime();
 
             if (drop.y + 64 < 0) {
                 flashlight.remove();
@@ -384,6 +389,7 @@ public class MiniGameGoOutside implements Screen {
                 counter++;
                 if (counter == 3) {
                     game.setScreen(new Background(game));
+                    game.getPlayer().setDayCounter(game.getPlayer().getDayCounter()+1);
                 }
                 System.out.println(counter);
 
@@ -394,7 +400,7 @@ public class MiniGameGoOutside implements Screen {
         while (radio.hasNext()) {
 
             Rectangle drop = radio.next();
-            drop.y -= 100 * Gdx.graphics.getDeltaTime();
+            drop.y -= 400 * Gdx.graphics.getDeltaTime();
 
             if (drop.y + 64 < 0) {
                 radio.remove();
@@ -408,6 +414,7 @@ public class MiniGameGoOutside implements Screen {
                 counter++;
                 if (counter == 3) {
                     game.setScreen(new Background(game));
+                    game.getPlayer().setDayCounter(game.getPlayer().getDayCounter()+1);
                 }
                 System.out.println(counter);
 
@@ -418,7 +425,7 @@ public class MiniGameGoOutside implements Screen {
         while (guitar.hasNext()) {
 
             Rectangle drop = guitar.next();
-            drop.y -= 100 * Gdx.graphics.getDeltaTime();
+            drop.y -= 400 * Gdx.graphics.getDeltaTime();
 
             if (drop.y + 64 < 0) {
                 guitar.remove();
@@ -432,6 +439,7 @@ public class MiniGameGoOutside implements Screen {
                 counter++;
                 if (counter == 3) {
                     game.setScreen(new Background(game));
+                    game.getPlayer().setDayCounter(game.getPlayer().getDayCounter()+1);
                 }
                 System.out.println(counter);
 
@@ -440,20 +448,13 @@ public class MiniGameGoOutside implements Screen {
             }
         }
 
-        if (TimeUtils.nanoTime() - dropRate > 1000000000) {
+        if (TimeUtils.nanoTime() - dropRate > 100000000) {
             spawnDrops();
         }
 
     }
 
     private void userInputs() {
-
-        if (Gdx.input.isTouched()) {
-            touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-            camera.unproject(touchPos);
-            player.x = touchPos.x - 25;
-            player.y = touchPos.y;
-        }
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             player.x -= 400 * Gdx.graphics.getDeltaTime();
         }

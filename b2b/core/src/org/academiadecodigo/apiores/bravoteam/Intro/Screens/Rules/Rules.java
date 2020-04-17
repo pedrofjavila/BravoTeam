@@ -19,7 +19,7 @@ import org.academiadecodigo.apiores.bravoteam.Intro.Screens.MiniGameGoOutside;
 import org.academiadecodigo.apiores.bravoteam.Intro.Screens.miniGame3;
 import org.academiadecodigo.apiores.bravoteam.Intro.Util.Messages;
 import org.academiadecodigo.apiores.bravoteam.Intro.theConfining;
-import sun.rmi.rmic.Main;
+
 
 public class Rules implements Screen {
 

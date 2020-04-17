@@ -2,6 +2,7 @@ package org.academiadecodigo.apiores.bravoteam.Intro;
 
 import org.academiadecodigo.apiores.bravoteam.Intro.Item.Item;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class Player {
     private int waters = 10;
     private int food = 10;
 
-    private List<Item> Inventory = new LinkedList<>();
+    private ArrayList<Item> Inventory = new ArrayList<>();
 
     public void setHealth(int health) {
         this.health = health;
@@ -74,7 +75,7 @@ public class Player {
     }
 
 
-    public List<Item> getInventory() {
+    public ArrayList<Item> getInventory() {
         return Inventory;
     }
 

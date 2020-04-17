@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
 import com.badlogic.gdx.math.MathUtils;
 import org.academiadecodigo.apiores.bravoteam.Intro.Factory.itemFactory;
+import org.academiadecodigo.apiores.bravoteam.Intro.Item.food;
 import org.academiadecodigo.apiores.bravoteam.Intro.Player;
 import org.academiadecodigo.apiores.bravoteam.Intro.Screens.Diary.DiaryText;
 import org.academiadecodigo.apiores.bravoteam.Intro.Util.Messages;
@@ -20,7 +21,10 @@ import org.academiadecodigo.apiores.bravoteam.Intro.Factory.itens;
 import org.academiadecodigo.apiores.bravoteam.Intro.Item.Item;
 import org.academiadecodigo.apiores.bravoteam.Intro.theConfining;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
+
 
 
 public class Background implements Screen {
@@ -51,8 +55,6 @@ public class Background implements Screen {
                 if(keyCode == Input.Keys.NUM_1){
                     miniGameGoOutside.create();
                     game.setScreen(miniGameGoOutside);
-
-
                 }
 
                 if(keyCode == Input.Keys.D){
@@ -70,21 +72,14 @@ public class Background implements Screen {
                            game.setScreen(miniGame3);
 
                 }if(keyCode == Input.Keys.E){
-                    Iterator<Item> invent = game.getPlayer().getInventory().iterator();
-                    while(invent.hasNext()) {
-                        if (invent.next().equals(itens.FOOD)) {
-                            game.getPlayer().setHunger(game.getPlayer().getHunger() + 25);
-                            invent.remove();
-                        }
-                    }
+                    game.getPlayer().setHunger(game.getPlayer().getHunger() + 25);
+
+
+
                 }if(keyCode == Input.Keys.Q){
-                    Iterator<Item> invent = game.getPlayer().getInventory().iterator();
-                    while (invent.hasNext()) {
-                        if (invent.next().equals(itens.WATER)) {
-                            game.getPlayer().setThirst(game.getPlayer().getThirst() + 25);
-                            invent.remove();
-                        }
-                    }
+
+                game.getPlayer().setThirst(game.getPlayer().getThirst() + 25);
+
                 }
                 return true;
             }
@@ -130,7 +125,7 @@ public class Background implements Screen {
 
     @Override
     public void hide() {
-        Gdx.input.setInputProcessor(null);
+
     }
 
     @Override
@@ -176,7 +171,7 @@ public class Background implements Screen {
                 diary.setRandom_event(Messages.GET_OUT_1);
                 break;
             case 2:
-                game.getPlayer().getInventory().add(itemFactory.RandomcreateItem());
+
                 diary.setRandom_event(Messages.GET_OUT_2+" Let me look at my inventory");
                 break;
             case 3:

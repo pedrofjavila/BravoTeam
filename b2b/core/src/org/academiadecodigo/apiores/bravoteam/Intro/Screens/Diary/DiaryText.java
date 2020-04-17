@@ -161,8 +161,7 @@ public class DiaryText implements Screen {
 
 
                 }
-
-                               return true;
+                return true;
             }
         });
 
