@@ -58,6 +58,7 @@ public class Background implements Screen {
                    diary = new DiaryText(game);
                     diary.create();
                     setDiaryMessage();
+                    setDiaryEvent();
                     diary.setPlayer(player);
                    game.setScreen(diary);
                     //diary.render(1);
@@ -146,6 +147,7 @@ public class Background implements Screen {
                 break;
             case 1:
                 diary.setEvent(Messages.EVENT_DAY_ONE);
+
                 break;
             case 2:
                 diary.setEvent(Messages.EVENT_DAY_TWO);
