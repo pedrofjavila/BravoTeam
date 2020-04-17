@@ -1,5 +1,7 @@
 package org.academiadecodigo.apiores.bravoteam.Intro.Util;
 
+import com.badlogic.gdx.InputAdapter;
+
 public class Messages {
 
  // INTRO
@@ -98,7 +100,29 @@ public static final String EVENT_DAYS_LOST = "Everyday is the same...\n"+
 
 
  // RANDOM EVENTS
- public static final String RANDOM_GOT_MUGGED = "I got mugged by marginals";
+ public static final String GET_OUT_1= "I did not found anything useful";
+ public static final String GET_OUT_2= "I found 1 item";
+ public static final String GET_OUT_3= "I had to escape rabid dogs";
+ public static final String GET_OUT_4= "I met a stranger, he tried to eat me...\n"+
+         "Literally, he tried to eat me!!!";
+ public static final String GET_OUT_5= "The radio advertising was a trap...\n"+
+         "I am running better everyday";
+ public static final String GET_OUT_6 = "Wow, I managed to find a grocery shop open\n"+
+         "the shelves were empty, but it was open...";
+ public static final String GET_OUT_7  = "I got mugged by marginals\n"
+         +"They are better runners than me...";
+
+// PLAYER STATS
+
+ public static final String FOOD_50 = "My food reserve is below 50%";
+ public static final String FOOD_0 = "NOOOOO, I need food!!!";
+ public static final String WATER_50 = "I need to search for beer...";
+ public static final String WATER_0 = "I see oasis on my ceiling...";
+ public static final String HEALTH_50 = "I am beat up, but alive";
+ public static final String HEALTH_0 = "      RIP     ";
+ public static final String SANITY_50 = "I became insane, with long intervals of horrible sanity.";
+ public static final String SANITY_0 = "I should never be left alone with my mind for so long.";
+
 
  public static final String PLAYERSTATS = "Health  :  \n" + "Hunger  :  \n" + "Thirst  :  \n" + "Sanity  :  \n" ;
 }

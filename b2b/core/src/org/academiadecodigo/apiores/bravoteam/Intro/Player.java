@@ -77,4 +77,11 @@ public class Player {
     public List<Item> getInventory() {
         return Inventory;
     }
+
+    @Override
+    public String toString() {
+        return "You have the Following on your inventory\n" +
+                "Inventory=" + Inventory +
+                '.';
+    }
 }

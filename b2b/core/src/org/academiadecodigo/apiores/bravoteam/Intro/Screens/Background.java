@@ -139,7 +139,7 @@ public class Background implements Screen {
 
 
     public void setDiaryMessage( ){
-        int random = MathUtils.random(7,10);
+
         switch(player.getDayCounter()){
             case 0:
                 diary.setEvent(Messages.EVENT_DAY_ZERO);
@@ -165,6 +165,31 @@ public class Background implements Screen {
                 diary.setEvent(Messages.EVENT_DAYS_LOST);
         }
 
+    }
+    public void setDiaryEvent( ) {
+        int random = MathUtils.random(1, 7);
+        switch (random) {
+            case 1:
+                diary.setRandom_event(Messages.GET_OUT_1);
+                break;
+            case 2:
+                diary.setRandom_event(Messages.GET_OUT_2);
+                break;
+            case 3:
+                diary.setRandom_event(Messages.GET_OUT_3);
+                break;
+            case 4:
+                diary.setRandom_event(Messages.GET_OUT_4);
+                break;
+            case 5:
+                diary.setRandom_event(Messages.GET_OUT_5);
+                break;
+            case 6:
+                diary.setRandom_event(Messages.GET_OUT_6);
+                break;
+            default:
+                diary.setRandom_event(Messages.GET_OUT_7);
+        }
     }
 
 

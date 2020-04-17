@@ -37,6 +37,7 @@ public class DiaryText implements Screen {
     private String event;
     private String days = Messages.DAY_COUNT_DIARY + daycounter;
     private String result_event;
+    private String Random_event = null;
 
 
 
@@ -94,19 +95,31 @@ public class DiaryText implements Screen {
 
            if (assetManager.isLoaded("hwsize30_black.ttf")) {
                System.out.println("assetmanager did the load of hwsize30:black");
-               playerStats = player.getHealth() + "\n" +
-                       player.getHunger() + "\n" + player.getThirst() + "\n" + player.getSanity();
+               playerStats = player.getHealth() + "%\n" +
+                       player.getHunger() + "%\n" + player.getThirst() + "%\n" + player.getSanity() +"%";
                result_event = days + "\n" + "\n" + event;
                assetManager.get("hwsize30_black.ttf", BitmapFont.class).draw(batch, result_event, 400, 800);
+
                if (assetManager.isLoaded("hwsize40_red.ttf")) {
                    assetManager.get("hwsize40_red.ttf", BitmapFont.class).draw(batch, playerStats, 1300, 800);
-                   if (assetManager.isLoaded("hwsize40_black.ttf"))
-                       assetManager.get("hwsize40_black.ttf", BitmapFont.class).draw(batch, Messages.PLAYERSTATS, 1100, 800);
                }
-
+                   if (assetManager.isLoaded("hwsize40_black.ttf")) {
+                       assetManager.get("hwsize40_black.ttf", BitmapFont.class)
+                               .draw(batch, Messages.PLAYERSTATS, 1100, 800);
+                   }
+                   if (assetManager.isLoaded("hwsize30_black.ttf")){
+                       assetManager.get("hwsize30_black.ttf",BitmapFont.class)
+                               .draw(batch,player.toString(),1100,500);
+                       System.out.println(player.toString());
+                   }
+                   if(assetManager.isLoaded("hwsize30_black.ttf")){
+                    assetManager.get("hwsize30_black.ttf",BitmapFont.class)
+                       .draw(batch,Random_event, 400, 500);
+               }
            }
         batch.end();
-    }
+           }
+
 
 
     public void hide() {
@@ -120,6 +133,10 @@ public class DiaryText implements Screen {
     public void setEvent(String event) {
         this.event = event;
         System.out.println(event);
+    }
+
+    public void setRandom_event(String random_event) {
+        Random_event = random_event;
     }
 
     public void setPlayer(Player player) {
