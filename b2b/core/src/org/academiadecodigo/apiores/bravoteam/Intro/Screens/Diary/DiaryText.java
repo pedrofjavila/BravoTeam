@@ -93,39 +93,42 @@ public class DiaryText implements Screen {
         batch.begin();
         batch.draw(diary,300,100,1350,800);
 
-            // PLAYER DIARY LEFT PAGE
-           if (assetManager.isLoaded("hwsize30_black.ttf")) {
-               System.out.println("assetmanager did the load of hwsize30:black");
                playerStats = player.getHealth() + "%\n" +
                        player.getHunger() + "%\n" + player.getThirst() + "%\n" + player.getSanity() +"%";
                result_event = days + "\n" + "\n" + event;
+
+            // PLAYER DIARY LEFT PAGE
+           if (assetManager.isLoaded("hwsize30_black.ttf")) {
                assetManager.get("hwsize30_black.ttf", BitmapFont.class).draw(batch, result_event, 400, 800);
+           }
                 // PLAYER LEVELS STATS
                if (assetManager.isLoaded("hwsize40_red.ttf")) {
-                   assetManager.get("hwsize40_red.ttf", BitmapFont.class).draw(batch, playerStats, 1300, 800);
+                   BitmapFont font_Player_level_stats = assetManager.get("hwsize40_red.ttf", BitmapFont.class);
+                   font_Player_level_stats .draw(batch, playerStats, 1300, 800);
                }
                // PLAYER LEVELS LABELS
                    if (assetManager.isLoaded("hwsize40_black.ttf")) {
-                       assetManager.get("hwsize40_black.ttf", BitmapFont.class)
-                               .draw(batch, Messages.PLAYERSTATS, 1100, 800);
+                       BitmapFont font_Player_levels_lables = assetManager.get("hwsize40_black.ttf", BitmapFont.class);
+                       font_Player_levels_lables.draw(batch, Messages.PLAYERSTATS, 1100, 800);
                    }
                    // DISPLAY INVENTORY
                    if (assetManager.isLoaded("hwsize30_black.ttf")){
-                       assetManager.get("hwsize30_black.ttf",BitmapFont.class)
-                               .draw(batch,player.toString(),1100,450);
-                       System.out.println(player.toString());
+                      BitmapFont font_Display_INV = assetManager.get("hwsize30_black.ttf",BitmapFont.class);
+                       font_Display_INV.draw(batch,player.toString(),1100,450);
+
                    }
                    //RANDOM EVENTS
                    if(assetManager.isLoaded("hwsize30_black.ttf")){
-                    assetManager.get("hwsize30_black.ttf",BitmapFont.class)
-                       .draw(batch,Random_event, 400, 250);
+                    BitmapFont font_Event_Random = assetManager.get("hwsize30_black.ttf",BitmapFont.class);
+                       font_Event_Random.draw(batch,Random_event, 400, 250);
                }
                    // RANDOM  EVENTS TITLE
                if(assetManager.isLoaded("hwsize40_black.ttf")){
-                   assetManager.get("hwsize40_black.ttf",BitmapFont.class)
-                           .draw(batch,Random_event_title, 400, 350);
+                BitmapFont font_Event_title = assetManager.get("hwsize40_black.ttf",BitmapFont.class);
+                font_Event_title.draw(batch,Random_event_title, 400, 350);
+
                }
-           }
+
         batch.end();
            }
 

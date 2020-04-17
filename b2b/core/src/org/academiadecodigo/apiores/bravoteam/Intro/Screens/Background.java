@@ -35,12 +35,14 @@ public class Background implements Screen {
     private Boolean isDpressed = false;
     private DiaryText diary;
     private Music bg_music;
+    private BitmapFont font;
 
 
 
     public Background(theConfining game) {
         this.game = game;
         player = game.getPlayer();
+        font = game.getFont();
 
      //   assetManager = new AssetManager();
     }
@@ -92,7 +94,7 @@ public class Background implements Screen {
 
         bg_music = Gdx.audio.newMusic(Gdx.files.internal("Music/background_music.mp3"));
         bg_music.setLooping(true);
-        bg_music.setVolume(0.10f);
+        bg_music.setVolume(theConfining.mastervol);
     }
 
 
@@ -100,12 +102,15 @@ public class Background implements Screen {
     public void render(float delta) {
         game.getBatch().begin();
         game.getBatch().draw(new Texture("Images/background.jpg"),0f,0f,1920,1136);
-        game.getBatch().end();
+
+        if (!bg_music.isPlaying()){
         bg_music.play();
-       /* if (isDpressed){
-            diary.render(1);
-            setDiaryMessage();
-        }*/
+        }
+            font.getData().setScale(2.5f,2.5f);
+            font.draw(game.getBatch()," Press D for Diary\n\nIf you want to take your risk and decide to go outside \n\n"+
+                    " Press 1 for GoScavenging\n"+" Press 2 for GoforaWalk\n\n\nGood Luck",350,1000);
+            font.setColor(Color.WHITE);
+            game.getBatch().end();
     }
 
     @Override

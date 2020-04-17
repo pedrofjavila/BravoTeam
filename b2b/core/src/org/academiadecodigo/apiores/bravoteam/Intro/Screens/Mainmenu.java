@@ -19,13 +19,14 @@ public class Mainmenu implements Screen {
         public void show() {
             mainmenu_music = Gdx.audio.newMusic(Gdx.files.internal("Music/I Will Survive_intro.mp3"));
             mainmenu_music.setLooping(true);
-            mainmenu_music.setVolume(0.10f);
+            mainmenu_music.setVolume(theConfining.mastervol);
             Gdx.input.setInputProcessor(new InputAdapter(){
                 @Override
                 public boolean keyDown(int keyCode){
                     if(keyCode == Input.Keys.Y){
                         game.setScreen(new Background(game));
                         mainmenu_music.stop();
+
                     }
                     if(keyCode == Input.Keys.ESCAPE){
                         System.exit(1);
