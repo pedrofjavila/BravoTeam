@@ -7,6 +7,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -29,7 +30,7 @@ public class Rules implements Screen {
         private Texture rules_book = new Texture("Images/rules_diary_1920.png");
         private theConfining game;
         private BitmapFont font;
-
+        private Music rules_music;
         private String intro = Messages.INTRO;
         private String rules = Messages.Rules;
 
@@ -50,23 +51,35 @@ public class Rules implements Screen {
 
     @Override
     public void show() {
+
+        rules_music = Gdx.audio.newMusic(Gdx.files.internal("Music/512196__legend1060__an-epicenter-and-a-pandemic.mp3"));
+        rules_music.setLooping(true);
+        rules_music.setVolume(theConfining.mastervol);
+
+
         Gdx.input.setInputProcessor(new InputAdapter() {
             @Override
             public boolean keyDown(int keyCode) {
 
-
                 if (keyCode == Input.Keys.ENTER) {
+                    rules_music.stop();
                     game.setScreen(new Mainmenu(game));
 
 
-                }return true;
+                }
 
-        }
+                if(keyCode == Input.Keys.P) {
+                    theConfining.mastervol = 0;
+                    System.out.println(theConfining.mastervol);
+                } return true;
+                }
+
+
     });
     }
     @Override
         public void render(float delta)  {
-
+        rules_music.play();
             batch.begin();
             batch.draw(rules_book,300,200,1350,700);
 

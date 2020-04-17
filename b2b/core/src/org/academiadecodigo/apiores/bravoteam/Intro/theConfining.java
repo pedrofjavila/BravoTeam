@@ -16,6 +16,7 @@ public class theConfining extends Game {
     private SpriteBatch batch;
     private ShapeRenderer shapeRenderer;
     private BitmapFont font;
+    public static float mastervol = 0.10f;
     @Override
     public void create() {
         batch = new SpriteBatch();
@@ -47,6 +48,7 @@ public class theConfining extends Game {
         return player;
     }
 
+    public void setMasterVolume(float i){mastervol = i;}
     }
 
     //private boolean game = false;

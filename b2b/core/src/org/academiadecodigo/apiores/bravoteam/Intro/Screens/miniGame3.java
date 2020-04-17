@@ -51,8 +51,8 @@ public class miniGame3 implements Screen {
 
         batch = game.getBatch();
         camera = new OrthographicCamera();
-        background = new Texture("Itens/relaxingRoadpixel.png");
-        playerImage = new Texture("Itens/open-person-png-top-view-2000_2022.png");
+        background = new Texture("Items/relaxingRoadpixel.png");
+        playerImage = new Texture("Items/open-person-png-top-view-2000_2022.png");
 
         player = new Rectangle();
         player.x = 960;
@@ -63,10 +63,10 @@ public class miniGame3 implements Screen {
 
         jojoDrops = new Array<Rectangle>();
 
-        jojo = new Texture("Itens/227-2273484_bard-halfling-roll20-token-bard.png");
+        jojo = new Texture("Items/227-2273484_bard-halfling-roll20-token-bard.png");
         jojoDrops = new Array<Rectangle>();
 
-        rita = new Texture("Itens/227-2273484_bard-halfling-roll20-token-bard.png");
+        rita = new Texture("Items/227-2273484_bard-halfling-roll20-token-bard.png");
         ritaDrops = new Array<Rectangle>();
 
         spawnDrops();
