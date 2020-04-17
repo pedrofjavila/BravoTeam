@@ -80,7 +80,7 @@ public class Player {
 
     @Override
     public String toString() {
-        return "You have the Following on your inventory\n" +
+        return "You have the Following on your\n" +
                 "Inventory=" + Inventory +
                 '.';
     }

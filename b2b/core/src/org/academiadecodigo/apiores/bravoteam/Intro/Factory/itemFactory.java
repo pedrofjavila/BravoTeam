@@ -1,12 +1,13 @@
 package org.academiadecodigo.apiores.bravoteam.Intro.Factory;
 
+import com.badlogic.gdx.math.MathUtils;
 import org.academiadecodigo.apiores.bravoteam.Intro.Item.*;
 
 public class itemFactory {
 
-    public static Item createItem(itens itens){
+    public static Item createItem(itens itens) {
 
-        switch (itens){
+        switch (itens) {
             case FOOD:
                 return new food();
             case WATER:
@@ -27,5 +28,31 @@ public class itemFactory {
         }
         return null;
 
+    }
+
+    public static Item RandomcreateItem() {
+        int random = MathUtils.random(1, 7);
+        switch (random) {
+            case 1:
+                return new food();
+
+            case 2:
+                return new water();
+
+            case 3:
+                return new Guitar();
+
+            case 4:
+                return new baseballBat();
+
+            case 5:
+                return new sanitizer();
+
+            case 6:
+                return new radio();
+
+            default:
+                return new flashlight();
+        }
     }
 }

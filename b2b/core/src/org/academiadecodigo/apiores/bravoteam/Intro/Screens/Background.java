@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
 import com.badlogic.gdx.math.MathUtils;
+import org.academiadecodigo.apiores.bravoteam.Intro.Factory.itemFactory;
 import org.academiadecodigo.apiores.bravoteam.Intro.Player;
 import org.academiadecodigo.apiores.bravoteam.Intro.Screens.Diary.DiaryText;
 import org.academiadecodigo.apiores.bravoteam.Intro.Util.Messages;
@@ -175,7 +176,8 @@ public class Background implements Screen {
                 diary.setRandom_event(Messages.GET_OUT_1);
                 break;
             case 2:
-                diary.setRandom_event(Messages.GET_OUT_2);
+                game.getPlayer().getInventory().add(itemFactory.RandomcreateItem());
+                diary.setRandom_event(Messages.GET_OUT_2+" Let me look at my inventory");
                 break;
             case 3:
                 diary.setRandom_event(Messages.GET_OUT_3);
