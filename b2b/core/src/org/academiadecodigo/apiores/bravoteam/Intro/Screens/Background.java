@@ -1,7 +1,20 @@
 package org.academiadecodigo.apiores.bravoteam.Intro.Screens;
 
 import com.badlogic.gdx.*;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.FileHandleResolver;
+import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
+import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
+import com.badlogic.gdx.math.MathUtils;
+import org.academiadecodigo.apiores.bravoteam.Intro.Player;
+import org.academiadecodigo.apiores.bravoteam.Intro.Screens.Diary.DiaryText;
+import org.academiadecodigo.apiores.bravoteam.Intro.Util.Messages;
 import org.academiadecodigo.apiores.bravoteam.Intro.Factory.itens;
 import org.academiadecodigo.apiores.bravoteam.Intro.Item.Item;
 import org.academiadecodigo.apiores.bravoteam.Intro.theConfining;
@@ -12,9 +25,15 @@ import java.util.Iterator;
 public class Background implements Screen {
 
     private theConfining game;
-
+    private Player player;
+   // private AssetManager assetManager;
+    private Boolean isDpressed = false;
+    private DiaryText diary;
+    private Music bg_music;
     public Background(theConfining game) {
         this.game = game;
+        player = game.getPlayer();
+     //   assetManager = new AssetManager();
     }
 
     @Override
@@ -27,6 +46,18 @@ public class Background implements Screen {
                 if(keyCode == Input.Keys.NUM_1){
                     miniGameGoOutside.create();
                     game.setScreen(miniGameGoOutside);
+
+
+                }
+
+                if(keyCode == Input.Keys.D){
+                   diary = new DiaryText(game);
+                    diary.create();
+                    setDiaryMessage();
+                    diary.setPlayer(player);
+                   game.setScreen(diary);
+                    //diary.render(1);
+                    //isDpressed= true;
 
                 }if(keyCode == Input.Keys.NUM_2){
                            miniGame3.create();
@@ -52,13 +83,28 @@ public class Background implements Screen {
                 return true;
             }
         });
+
+
+
+
+
+
+        bg_music = Gdx.audio.newMusic(Gdx.files.internal("Music/background_music.mp3"));
+        bg_music.setLooping(true);
+        bg_music.setVolume(0.50f);
     }
+
 
     @Override
     public void render(float delta) {
         game.getBatch().begin();
-        game.getBatch().draw(new Texture("backgrd.jpg"),0f,0f,1920,1136);
+        game.getBatch().draw(new Texture("Images/backgrd.jpg"),0f,0f,1920,1136);
         game.getBatch().end();
+        bg_music.play();
+       /* if (isDpressed){
+            diary.render(1);
+            setDiaryMessage();
+        }*/
     }
 
     @Override
@@ -85,4 +131,38 @@ public class Background implements Screen {
     public void dispose() {
 
     }
+
+
+
+    public void setDiaryMessage( ){
+        int random = MathUtils.random(7,10);
+        switch(player.getDayCounter()){
+            case 0:
+                diary.setEvent(Messages.EVENT_DAY_ZERO);
+                break;
+            case 1:
+                diary.setEvent(Messages.EVENT_DAY_ONE);
+                break;
+            case 2:
+                diary.setEvent(Messages.EVENT_DAY_TWO);
+                break;
+            case 3:
+                diary.setEvent(Messages.EVENT_DAY_THREE);
+                break;
+            case 4:
+                diary.setEvent(Messages.EVENT_DAY_FOUR);
+                break;
+            case 5:
+                diary.setEvent(Messages.EVENT_DAY_FIVE);
+                break;
+            case 6:
+                diary.setEvent(Messages.EVENT_DAY_SIX);
+            default:
+                diary.setEvent(Messages.EVENT_DAYS_LOST);
+        }
+
+    }
+
+
+
 }

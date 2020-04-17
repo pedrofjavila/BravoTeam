@@ -16,7 +16,7 @@ public class mainMenu {
 
     private SpriteBatch batch;
     private OrthographicCamera camera;
-    private Texture menu = new Texture("menuImage7.png");
+    private Texture menu = new Texture("Images/menuImage7.png");
     //Animation<TextureRegion> animation;
 
 
