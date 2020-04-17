@@ -45,7 +45,7 @@ public class miniGame3 implements Screen {
     private boolean kill;
     private Array<Rectangle> jojoDrops;
     private Array<Rectangle> ritaDrops;
- ;
+
 
     public void create() {
 
@@ -55,7 +55,7 @@ public class miniGame3 implements Screen {
         playerImage = new Texture("itens/open-person-png-top-view-2000_2022.png");
 
         player = new Rectangle();
-        player.x = background.getWidth()/2;
+        player.x = 960;
         player.y = 0;
         player.width = 50;
         player.height = 150;
@@ -100,7 +100,10 @@ public class miniGame3 implements Screen {
 
     @Override
     public void render(float delta) {
-
+        if(player.y>970){
+            game.getPlayer().setSanity(game.getPlayer().getSanity()+30);
+            game.setScreen(new Background(game));
+        }
         camera.update();
         moveDrops(jojoDrops);
         moveDrops(ritaDrops);
@@ -150,8 +153,8 @@ public class miniGame3 implements Screen {
 
         Rectangle jojo;
         jojo = new Rectangle();
-        jojo.x = 1136;
-        jojo.y = (int) (Math.random() * 400);
+        jojo.x = 1925;
+        jojo.y = (int) (Math.random() * 800);
         jojo.width = 34;
         jojo.height = 34;
 
@@ -174,23 +177,21 @@ public class miniGame3 implements Screen {
         while (iterator.hasNext()) {
 
             Rectangle drop = iterator.next();
-            drop.x -= 200 * Gdx.graphics.getDeltaTime();
+            drop.x -= 400 * Gdx.graphics.getDeltaTime();
 
             if (drop.x + 64 < 0) {
                 iterator.remove();
             }
 
-            if (drop.overlaps(player) && kill) {
-
-                counter ++;
-                if(counter == 3){
+            if (drop.overlaps(player)) {
+                    game.getPlayer().setSanity(game.getPlayer().getSanity()- 30);
                     game.setScreen(new Background(game));
-                }
-                System.out.println(counter);
-                sound.play();
-                iterator.remove();
+
 
             }
+        }
+        if (TimeUtils.nanoTime() - dropRate > 1000000000) {
+            spawnDrops();
         }
         if (TimeUtils.nanoTime() - dropRate > 1000000000) {
             spawnDrops();

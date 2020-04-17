@@ -73,12 +73,6 @@ public class MiniGameGoOutside implements Screen {
 
         touchPos = new Vector3();
 
-        sound = Gdx.audio.newSound(Gdx.files.internal("minigame1/sound.mp3"));
-        music = Gdx.audio.newMusic(Gdx.files.internal("minigame1/music.mp3"));
-        music.setLooping(true);
-
-        music.setVolume(0.1f);
-
 
         foodDrops = new Array<Rectangle>();
 
